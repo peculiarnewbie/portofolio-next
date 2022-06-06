@@ -2,8 +2,6 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 
-import { useState } from 'react'
-
 import Header from '../Components/Header'
 import Footer from '../Components/Footer'
 import TopContent from '../Components/TopContent'
@@ -12,22 +10,9 @@ import Projects from '../Components/Projects'
 import Project from '../Components/Project'
 import { projects } from './api/NotionAPI'
 import ProjectDetail from '../Components/ProjectDetail'
-import ProjectDetailContainer from '../Components/ProjectDetailContainer'
-
 
 
 const Home: NextPage<Props> = (props) => {
-  const [detailStatus, setDetailStatus] = useState(true)
-  const [activeDetail, setActiveDetail] = useState(0)
-
-  const ChangeStatus = (status:boolean) => {
-    setDetailStatus(status)
-  }
-
-  const ChangeDetail = (index:number) => {
-    setActiveDetail(index)
-  }
-
   return (
     <div className="flex min-h-screen flex-col items-center justify-center">
       <Head>
@@ -46,33 +31,14 @@ const Home: NextPage<Props> = (props) => {
         <Projects header={"My Projects"}>
           {props.projects.map(function(project, i){
             return <Project
-                    project={project}
-                    changeDetail={ChangeDetail}
-                    changeStatus={ChangeStatus}
-                    // title = {project.properties.Name.title[0]?.plain_text}
-                    // description = {project.properties.Description.rich_text[0]?.plain_text}
-                    // link = {project.properties.Link.url}
-                    // image_url = {project.properties.Images.files[0]?.file?.url}
-                    // type = {project.properties.Type.select?.name}
-                    // position = {project.properties.Position?.number}
+                    title = {project.properties.Name.title[0]?.plain_text}
+                    description = {project.properties.Description.rich_text[0]?.plain_text}
+                    link = {project.properties.Link.url}
+                    image_url = {project.properties.Images.files[0]?.file?.url}
+                    type = {project.properties.Type.select?.name}
+                    position = {project.properties.Position?.number}
                     />
           })}
-          {/* <ProjectDetail
-            title = {props.projects[0].properties.Name.title[0]?.plain_text}
-            description = {props.projects[0].properties.Description.rich_text[0]?.plain_text}
-            link = {props.projects[0].properties.Link.url}
-            image_url = {props.projects[0].properties.Images.files[0]?.file?.url}
-            type = {props.projects[0].properties.Type.select?.name}
-            position = {props.projects[0].properties.Position?.number}
-            status = {true}
-            /> */}
-          <ProjectDetailContainer
-            active={0}
-            order={1}
-            status={detailStatus}
-            data={props.projects}
-            statusFunction = {ChangeStatus}
-            />
         </Projects>
 
         <Footer />
