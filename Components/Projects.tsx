@@ -1,4 +1,5 @@
 function Projects({header, children}:Params){
+
     let childCount = children[0].length
 
     var orderArray = [];
@@ -6,6 +7,8 @@ function Projects({header, children}:Params){
     for(var i=0; i < childCount; i++){
         orderArray.push(i)
     }
+
+    
 
     return(
         <div className="w-full">

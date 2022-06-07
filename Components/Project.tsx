@@ -1,4 +1,5 @@
 import { useEffect } from "react"
+import {CalculateOrder, CalculateBasis} from "./funtions/Calculations"
 
 interface Params{
     title:string
@@ -11,6 +12,7 @@ interface Params{
 
 interface SimpleParams{
     project:any
+    active:number
     changeStatus:any
     changeDetail:any
 }
@@ -29,13 +31,10 @@ function Project(info:SimpleParams){
         info.changeStatus(true)
     }
 
-    let basis = 3;
-    let order = 2;
-    if(position > 5) order = 4
-    else if(position < 3){
-        basis = 2;
-        order = 0;
-    } 
+
+
+    let basis = CalculateBasis(position)
+    let order = CalculateOrder(position)
 
     return(
         <div className={`relative h-[300px] w-full basis-1/${basis} grow order-${order}`}>

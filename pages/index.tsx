@@ -33,10 +33,7 @@ const Home: NextPage<Props> = (props) => {
   }
 
   const ChangeDetail = (index:number, order:number) => {
-    console.log(`${detailOrder} and ${order}`)
-
     if(index == detailIndex && !detailStatus) { 
-      // Only works for the first row somehow
       changeOrder = true
       detailOrder = order-1
       gotoDetail()
@@ -54,8 +51,6 @@ const Home: NextPage<Props> = (props) => {
     gotoDetail()
 
     prevOrder = order
-
-    console.log(`then ${detailOrder} and ${order} and ${prevOrder}`)
   }
 
   function gotoDetail(){
@@ -88,7 +83,7 @@ const Home: NextPage<Props> = (props) => {
 
         <Links />
 
-        <div className='flex flex-wrap h-[20px] w-full bg-slate-300 gap-2'>
+        <div className='flex flex-wrap h-[6px] w-full bg-slate-300 gap-1'>
           <div className='basis-1/2 h-1/2 order-1 bg-red-200'></div>
           <div className='basis-1/2 h-1/2 order-1 bg-red-200'></div>
           <div className='basis-1/3 h-1/2 order-3 bg-green-200'></div>
@@ -103,6 +98,7 @@ const Home: NextPage<Props> = (props) => {
           {props.projects.map(function(project, i){
             return <Project
                     project={project}
+                    active ={detailIndex}
                     changeDetail={ChangeDetail}
                     changeStatus={ChangeStatus}
                     // title = {project.properties.Name.title[0]?.plain_text}
@@ -124,10 +120,11 @@ const Home: NextPage<Props> = (props) => {
             /> */}
           <ProjectDetailContainer
             active={detailIndex}
-            order={1}
+            order={-2}
             status={detailStatus}
             data={props.projects}
             statusFunction = {ChangeStatus}
+            changeDetail={ChangeDetail}
             />
         </Projects>
 
