@@ -22,9 +22,9 @@ function Projects({header, children}:Params){
                         </div>
                     </div>
                 })}
-                <div className='relative w-full order-999'>
+                <div style={{order: `999`}} className='relative w-full'>
                     <div id={`projectDetail-999`}
-                        className={`absolute w-full h-10 -top-[200px] pointer-events-none`}>
+                        className={`absolute w-full h-10 -top-[1000px] pointer-events-none`}>
                     </div>
                 </div>
             </div>

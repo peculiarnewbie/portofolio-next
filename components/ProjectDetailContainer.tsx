@@ -63,10 +63,12 @@ function ProjectDetailContainer(info:Params){
     else if(info.active > 2) order = 3
 
     let translateDir ='Y'
+    let width = 'auto'
 
     if(info.isMobileSize){
         order = 999
         translateDir = 'X'
+        width = '600%'
     }
 
     if(!info.status) height = '0' ;
@@ -89,7 +91,7 @@ function ProjectDetailContainer(info:Params){
                     transitionDuration: `300ms`
                     // padding:info.status? '1rem' : '0px'
             }}
-            className='relative rounded-lg w-full h-[700px] lg:h-auto px-4 pb-8 lg:p-0 lg:mx-4 bg-slate-300'>
+            className='relative rounded-lg w-full h-[600px] sm:h-[700px] md:h-[900px] lg:h-auto px-4 pb-8 lg:p-0 lg:mx-4 bg-slate-300'>
             {/* <div className='text-xl font-semibold mb-2'>Project Details</div> */}
             <div className='flex items-center absolute inset-y-0 -left-14'>
                 <div style={{cursor:info.status? 'pointer' : 'default' , pointerEvents:info.status? 'auto' : 'none'}} className='h-10 w-10' onClick={ChangeDetailPrev}>
@@ -106,9 +108,10 @@ function ProjectDetailContainer(info:Params){
                 >
                     <div className='absolute h-full w-full z-10 shadow-inner-xl pointer-events-none'></div>
                     <div style={{transform: `translate${translateDir}(-${translation[info.active-1]}%)`,
+                                width: `${width}`,
                                 transitionProperty: `transform`,
                                 transitionTimingFunction: `transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);`,
-                                transitionDuration: `500ms`}} className='flex lg:flex-col h-full lg:h-auto'>
+                                transitionDuration: `500ms`}} className='flex lg:flex-col h-full lg:h-auto w-auto'>
                         {info.children}
                     </div>
 
@@ -120,7 +123,8 @@ function ProjectDetailContainer(info:Params){
                     })}
                 </div> */}
                 <a onClick={HandleClose}>
-                    <div style={{cursor:info.status? 'pointer' : 'default' , pointerEvents:info.status? 'auto' : 'none'}} className="text-4xl font-semibold absolute right-6 top-6 h-10 w-10 cursor-pointer">x</div>
+                    <div style={{cursor:info.status? 'pointer' : 'default' , pointerEvents:info.status? 'auto' : 'none', display:info.isMobileSize? 'none' : 'block'}} 
+                        className="text-4xl font-semibold absolute right-6 top-6 h-10 w-10 cursor-pointer">x</div>
                 </a>
 
             </div>
