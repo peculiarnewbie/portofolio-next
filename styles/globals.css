@@ -6,4 +6,11 @@
     html{
         @apply 	scroll-smooth
     }
+    
+}
+
+@layer utilities{
+    .filter-black{
+        filter: invert(0%) sepia(4%) saturate(0%) hue-rotate(309deg) brightness(100%) contrast(107%);
+    }
 }
