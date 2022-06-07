@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import {CalculateOrder, CalculateBasis} from "./funtions/Calculations"
+import {CalculateOrder, CalculateBasis} from "./functions/Calculations"
 
 interface Params{
     title:string

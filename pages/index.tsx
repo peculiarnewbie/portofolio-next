@@ -4,15 +4,15 @@ import Image from 'next/image'
 
 import { useEffect, useState } from 'react'
 
-import Header from '../Components/Header'
-import Footer from '../Components/Footer'
-import TopContent from '../Components/TopContent'
-import Links from '../Components/Links'
-import Projects from '../Components/Projects'
-import Project from '../Components/Project'
+import Header from '../components/Header'
+import Footer from '../components/Footer'
+import TopContent from '../components/TopContent'
+import Links from '../components/Links'
+import Projects from '../components/Projects'
+import Project from '../components/Project'
 import { projects } from './api/NotionAPI'
-import ProjectDetail from '../Components/ProjectDetail'
-import ProjectDetailContainer from '../Components/ProjectDetailContainer'
+import ProjectDetail from '../components/ProjectDetail'
+import ProjectDetailContainer from '../components/ProjectDetailContainer'
 
 let detailOrder = -1;
 let prevOrder = detailOrder;

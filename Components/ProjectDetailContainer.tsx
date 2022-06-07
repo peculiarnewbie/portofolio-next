@@ -1,7 +1,7 @@
 import { type } from 'os';
 import React, { useState, useEffect } from 'react';
 import ProjectDetail from './ProjectDetail';
-import {CalculateOrder} from './funtions/Calculations'
+import {CalculateOrder} from './functions/Calculations'
 
 interface Params{
     active:number
