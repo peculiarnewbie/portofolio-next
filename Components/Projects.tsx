@@ -8,17 +8,17 @@ function Projects({header, children}:Params){
         orderArray.push(i)
     }
 
-    
+
 
     return(
         <div className="w-full">
             <p className="font-bold text-4xl m-4">{header}</p>
-            <div className="flex flex-1 flex-wrap gap-y-4">
+            <div className="flex flex-1 flex-wrap">
                 {children}
                 {orderArray.map(function(order, i){
-                    return <div className={`relative order-${order}`}>
+                    return <div className={`relative w-full order-${order}`}>
                         <div id={`projectDetail-${order}`}
-                            className={`absolute w-full h-10 -top-[200px]`}>
+                            className={`absolute w-full h-10 -top-[200px] pointer-events-none`}>
                         </div>
                     </div>
                 })}

@@ -37,7 +37,7 @@ function Project(info:SimpleParams){
     let order = CalculateOrder(position)
 
     return(
-        <div className={`relative h-[300px] w-full basis-1/${basis} grow order-${order}`}>
+        <div className={`relative h-[300px] w-full my-2 basis-1/${basis} grow order-${order}`}>
             <div className='w-full h-full p-4'>
                 <a onClick={handleClick}>
                     <div className="h-full group cursor-pointer">

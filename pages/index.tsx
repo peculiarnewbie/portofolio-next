@@ -35,16 +35,16 @@ const Home: NextPage<Props> = (props) => {
   const ChangeDetail = (index:number, order:number) => {
     if(index == detailIndex && !detailStatus) { 
       changeOrder = true
-      detailOrder = order-1
+      detailOrder = order+1
       gotoDetail()
     }
 
     setDetailIndex(index)
 
-    if(prevOrder == order && detailStatus) detailOrder = order+1
+    if(prevOrder == order && detailStatus) detailOrder = order
     else if(detailOrder == -1) detailOrder = order+1
-    else if(prevOrder < order) detailOrder = order;
-    else detailOrder = order+2
+    else if(prevOrder < order) detailOrder = order-1;
+    else detailOrder = order+1
 
     changeOrder = true
 
@@ -118,14 +118,20 @@ const Home: NextPage<Props> = (props) => {
             position = {props.projects[0].properties.Position?.number}
             status = {true}
             /> */}
-          <ProjectDetailContainer
-            active={detailIndex}
-            order={-2}
-            status={detailStatus}
-            data={props.projects}
-            statusFunction = {ChangeStatus}
-            changeDetail={ChangeDetail}
-            />
+          <ProjectDetailContainer active={detailIndex}
+                                  order={-2}
+                                  status={detailStatus}
+                                  data={props.projects}
+                                  statusFunction = {ChangeStatus}
+                                  changeDetail={ChangeDetail}>
+            {props.projects.map(function(project, i){
+                return <ProjectDetail
+                        project={project}
+                        />
+            })}
+          </ProjectDetailContainer>
+            
+          
         </Projects>
 
         <Footer />
