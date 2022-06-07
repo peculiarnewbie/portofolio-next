@@ -101,23 +101,8 @@ const Home: NextPage<Props> = (props) => {
                     active ={detailIndex}
                     changeDetail={ChangeDetail}
                     changeStatus={ChangeStatus}
-                    // title = {project.properties.Name.title[0]?.plain_text}
-                    // description = {project.properties.Description.rich_text[0]?.plain_text}
-                    // link = {project.properties.Link.url}
-                    // image_url = {project.properties.Images.files[0]?.file?.url}
-                    // type = {project.properties.Type.select?.name}
-                    // position = {project.properties.Position?.number}
                     />
           })}
-          {/* <ProjectDetail
-            title = {props.projects[0].properties.Name.title[0]?.plain_text}
-            description = {props.projects[0].properties.Description.rich_text[0]?.plain_text}
-            link = {props.projects[0].properties.Link.url}
-            image_url = {props.projects[0].properties.Images.files[0]?.file?.url}
-            type = {props.projects[0].properties.Type.select?.name}
-            position = {props.projects[0].properties.Position?.number}
-            status = {true}
-            /> */}
           <ProjectDetailContainer active={detailIndex}
                                   order={-2}
                                   status={detailStatus}
