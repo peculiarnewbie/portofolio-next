@@ -11,7 +11,7 @@ function Projects({header, children}:Params){
 
 
     return(
-        <div className="w-full">
+        <div className="w-full bg-lime-200">
             <p className="font-bold text-4xl m-4">{header}</p>
             <div className="flex flex-1 flex-wrap">
                 {children}
@@ -22,6 +22,11 @@ function Projects({header, children}:Params){
                         </div>
                     </div>
                 })}
+                <div className='relative w-full order-999'>
+                    <div id={`projectDetail-999`}
+                        className={`absolute w-full h-10 -top-[200px] pointer-events-none`}>
+                    </div>
+                </div>
             </div>
             
         </div>

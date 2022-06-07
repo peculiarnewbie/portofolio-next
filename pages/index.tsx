@@ -13,6 +13,7 @@ import Project from '../components/Project'
 import { projects } from './api/NotionAPI'
 import ProjectDetail from '../components/ProjectDetail'
 import ProjectDetailContainer from '../components/ProjectDetailContainer'
+import useWindowDimension from '../components/functions/useWindowDimension'
 
 let detailOrder = -1;
 let prevOrder = detailOrder;
@@ -23,7 +24,17 @@ const Home: NextPage<Props> = (props) => {
   const [detailChanging, setDetailChanging] = useState(false)
   const [detailIndex, setDetailIndex] = useState(0)
 
+  function IsMobileSized(){
+    const size = useWindowDimension();
+    if (typeof size == "undefined") {
+        return;
+    }
+    let bool = true
+    if(size[0] > 1024) bool = false
+    return bool
+  }
 
+  let isMobileSized = IsMobileSized()
 
   const ChangeStatus = (status:boolean) => {
     setDetailStatus(status)
@@ -41,7 +52,8 @@ const Home: NextPage<Props> = (props) => {
 
     setDetailIndex(index)
 
-    if(prevOrder == order && detailStatus) detailOrder = order
+    if(isMobileSized) detailOrder = 999;
+    else if(prevOrder == order && detailStatus) detailOrder = order
     else if(detailOrder == -1) detailOrder = order+1
     else if(prevOrder < order) detailOrder = order-1;
     else detailOrder = order+1
@@ -59,6 +71,8 @@ const Home: NextPage<Props> = (props) => {
       changeOrder = false;
     } 
   }
+
+  
 
   // useEffect(() => {
   //   if(changeOrder){
@@ -108,7 +122,8 @@ const Home: NextPage<Props> = (props) => {
                                   status={detailStatus}
                                   data={props.projects}
                                   statusFunction = {ChangeStatus}
-                                  changeDetail={ChangeDetail}>
+                                  changeDetail={ChangeDetail}
+                                  isMobileSize={isMobileSized}>
             {props.projects.map(function(project, i){
                 return <ProjectDetail
                         project={project}

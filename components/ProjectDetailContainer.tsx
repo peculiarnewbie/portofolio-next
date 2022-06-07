@@ -2,6 +2,8 @@ import { type } from 'os';
 import React, { useState, useEffect } from 'react';
 import ProjectDetail from './ProjectDetail';
 import {CalculateOrder} from './functions/Calculations'
+import useWindowDimension from '../components/functions/useWindowDimension'
+
 
 interface Params{
     active:number
@@ -11,6 +13,7 @@ interface Params{
     changeDetail:any
     data:[any]
     children:any
+    isMobileSize:boolean | undefined
 }
 
 type StatusFunction = {
@@ -22,6 +25,8 @@ interface Translation {
 }
 
 function ProjectDetailContainer(info:Params){
+
+
     const HandleClose = () => {
         info.statusFunction(false)
     }
@@ -57,6 +62,13 @@ function ProjectDetailContainer(info:Params){
     if(info.active > 5) order = 5
     else if(info.active > 2) order = 3
 
+    let translateDir ='Y'
+
+    if(info.isMobileSize){
+        order = 999
+        translateDir = 'X'
+    }
+
     if(!info.status) height = '0' ;
 
     var translation = new Array();
@@ -67,6 +79,7 @@ function ProjectDetailContainer(info:Params){
         translation[i] = i/childCount*100
     }
 
+
     return(
         // <div style={{display:info.status? 'flex' : 'none', height:`${height}`, order: `${order}`,}}
         <div style={{order: `${order}`, aspectRatio:info.status? '8/3' : '100000/1', opacity:info.status? '1' : '0',
@@ -76,8 +89,8 @@ function ProjectDetailContainer(info:Params){
                     transitionDuration: `300ms`
                     // padding:info.status? '1rem' : '0px'
             }}
-            className={`relative rounded-lg w-full h-[700px] lg:aspect-[8/3] lg:h-auto mx-4 bg-red-300`}>
-            {/* <div>Project Details</div> */}
+            className='relative rounded-lg w-full h-[700px] lg:h-auto px-4 pb-8 lg:p-0 lg:mx-4 bg-slate-300'>
+            {/* <div className='text-xl font-semibold mb-2'>Project Details</div> */}
             <div className='flex items-center absolute inset-y-0 -left-14'>
                 <div style={{cursor:info.status? 'pointer' : 'default' , pointerEvents:info.status? 'auto' : 'none'}} className='h-10 w-10' onClick={ChangeDetailPrev}>
                     <img src='/img/arrow-left.svg' className='drop-shadow'/>
@@ -92,10 +105,10 @@ function ProjectDetailContainer(info:Params){
                     className='flex flex-col relative rounded-lg w-full h-[700px]  lg:h-full bg-red-300 overflow-hidden'
                 >
                     <div className='absolute h-full w-full z-10 shadow-inner-xl pointer-events-none'></div>
-                    <div style={{transform: `translateY(-${translation[info.active-1]}%)`,
+                    <div style={{transform: `translate${translateDir}(-${translation[info.active-1]}%)`,
                                 transitionProperty: `transform`,
                                 transitionTimingFunction: `transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);`,
-                                transitionDuration: `500ms`}}>
+                                transitionDuration: `500ms`}} className='flex lg:flex-col h-full lg:h-auto'>
                         {info.children}
                     </div>
 

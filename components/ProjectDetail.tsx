@@ -14,7 +14,7 @@ function ProjectDetail(info:Params){
     let position = info.project?.properties.Position?.number
 
     return(
-        <div className="">
+        <div className="w-[500px] lg:w-full">
             {/* <p className='text-3xl font-semibold mb-4'>Project Details</p> */}
             
             
