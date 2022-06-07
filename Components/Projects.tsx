@@ -16,7 +16,7 @@ function Projects({header, children}:Params){
             <div className="flex flex-1 flex-wrap">
                 {children}
                 {orderArray.map(function(order, i){
-                    return <div className={`relative w-full order-${order}`}>
+                    return <div style={{order: `${order}`}} className='relative w-full'>
                         <div id={`projectDetail-${order}`}
                             className={`absolute w-full h-10 -top-[200px] pointer-events-none`}>
                         </div>
