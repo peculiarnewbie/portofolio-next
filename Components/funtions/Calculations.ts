@@ -1,3 +1,4 @@
+import { isReadable } from "stream";
 
 
 function CalculateOrder(position:number) {
@@ -13,6 +14,7 @@ function CalculateBasis(position:number){
     if(position < 3){
         basis = 2;
     }
+    else if(position > 5) basis = 1;
 
     return basis;
 }

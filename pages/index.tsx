@@ -147,7 +147,8 @@ export async function getStaticProps(){
   return {
     props:{
       projects: fetchedProjects,
-    }
+    },
+    revalidate: 10,
   }
 }
 

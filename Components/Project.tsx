@@ -36,8 +36,10 @@ function Project(info:SimpleParams){
     let basis = CalculateBasis(position)
     let order = CalculateOrder(position)
 
+    let basisPer = (100/basis).toString()
+
     return(
-        <div style={{order: `${order}`, flexBasis:`${basis}`}} 
+        <div style={{order: `${order}`, flexBasis:`${basisPer}%`}} 
             className='relative h-[300px] w-full my-2'>
             <div className='w-full h-full p-4'>
                 <a onClick={handleClick}>
