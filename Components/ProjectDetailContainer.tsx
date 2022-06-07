@@ -15,19 +15,27 @@ type StatusFunction = {
 }
 
 function ProjectDetailContainer(info:Params){
-
     const handleClose = () => {
         info.statusFunction(false)
     }
 
-    let height = '[720px]'
+    let height = '[500px]'
+
+    const data = info.data[info.active-1]
+
+    let order = 1
+    if(info.active > 5) order = 5
+    else if(info.active > 2) order = 3
 
     if(!info.status) height = '0' ;
 
+    
+
     return(
         <div style={{display:info.status? 'flex' : 'none'}} 
-        className={`relative h-${height} w-full basis-full grow order-1 bg-slate-400 transition-all`}>
-            <ProjectDetail project={info.data[0]} closeFunction={handleClose}/>
+        className={`relative h-fit w-full basis-full grow order-${order} bg-slate-400 transition-all`}>
+            <div id='projectDetail' className='absolute -top-[200px]'></div>
+            <ProjectDetail project={data} closeFunction={handleClose}/>
         </div>
     )
 }

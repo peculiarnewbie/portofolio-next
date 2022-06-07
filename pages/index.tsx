@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import Header from '../Components/Header'
 import Footer from '../Components/Footer'
@@ -14,34 +14,90 @@ import { projects } from './api/NotionAPI'
 import ProjectDetail from '../Components/ProjectDetail'
 import ProjectDetailContainer from '../Components/ProjectDetailContainer'
 
-
+let detailOrder = -1;
+let prevOrder = detailOrder;
+let changeOrder = false;
 
 const Home: NextPage<Props> = (props) => {
-  const [detailStatus, setDetailStatus] = useState(true)
-  const [activeDetail, setActiveDetail] = useState(0)
+  const [detailStatus, setDetailStatus] = useState(false)
+  const [detailChanging, setDetailChanging] = useState(false)
+  const [detailIndex, setDetailIndex] = useState(0)
+
+
 
   const ChangeStatus = (status:boolean) => {
     setDetailStatus(status)
+    if(!status){
+      detailOrder = -1;
+    }
   }
 
-  const ChangeDetail = (index:number) => {
-    setActiveDetail(index)
+  const ChangeDetail = (index:number, order:number) => {
+    console.log(`${detailOrder} and ${order}`)
+
+    if(index == detailIndex && !detailStatus) { 
+      // Only works for the first row somehow
+      changeOrder = true
+      detailOrder = order-1
+      gotoDetail()
+    }
+
+    setDetailIndex(index)
+
+    if(prevOrder == order && detailStatus) detailOrder = order+1
+    else if(detailOrder == -1) detailOrder = order+1
+    else if(prevOrder < order) detailOrder = order;
+    else detailOrder = order+2
+
+    changeOrder = true
+
+    gotoDetail()
+
+    prevOrder = order
+
+    console.log(`then ${detailOrder} and ${order} and ${prevOrder}`)
   }
+
+  function gotoDetail(){
+    if(changeOrder){
+      window.location.href = "#projectDetail-" + detailOrder;
+      changeOrder = false;
+    } 
+  }
+
+  // useEffect(() => {
+  //   if(changeOrder){
+  //     window.location.href = "#projectDetail-" + detailOrder;
+  //     changeOrder = false;
+  //   } 
+  // }, [detailIndex])
+
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center">
+    <div className="flex min-h-screen flex-col items-center justify-center scroll-smooth">
       <Head>
         <title>Arif Rahman</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="flex w-full flex-1 flex-col items-center max-w-screen-xl justify-center px-4 sm:px-10 md:px-20  ">
+      <main className="flex w-full flex-1 flex-col items-center max-w-screen-xl justify-center px-4 sm:px-10 md:px-20">
         <Header />
 
         <TopContent />
 
 
         <Links />
+
+        <div className='flex flex-wrap h-[20px] w-full bg-slate-300 gap-2'>
+          <div className='basis-1/2 h-1/2 order-1 bg-red-200'></div>
+          <div className='basis-1/2 h-1/2 order-1 bg-red-200'></div>
+          <div className='basis-1/3 h-1/2 order-3 bg-green-200'></div>
+          <div className='basis-1/3 h-1/2 order-3 bg-green-200'></div>
+          <div className='basis-1/3 h-1/2 order-3 bg-green-200'></div>
+          <div className='basis-1/3 h-1/2 order-2 bg-sky-200'></div>
+          <div className='basis-1/3 h-1/2 order-4 bg-orange-200'></div>
+          <div className='basis-1/3 h-1/2 order-5 bg-orange-200'></div>
+        </div>
 
         <Projects header={"My Projects"}>
           {props.projects.map(function(project, i){
@@ -67,7 +123,7 @@ const Home: NextPage<Props> = (props) => {
             status = {true}
             /> */}
           <ProjectDetailContainer
-            active={0}
+            active={detailIndex}
             order={1}
             status={detailStatus}
             data={props.projects}
@@ -76,6 +132,8 @@ const Home: NextPage<Props> = (props) => {
         </Projects>
 
         <Footer />
+
+        <div className='h-[1080px]'></div>
 
       </main>
 
