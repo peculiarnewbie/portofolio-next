@@ -1,7 +1,7 @@
 function TopContent(){
     return(
         <div className="w-full h-[600px]">
-            <div className="absolute left-0 top-0 w-full h-[600px] z-[-1] bg-fixed bg-cover bg-center bg-[url('/cloud-bg.png')]">
+            <div className="absolute left-0 top-0 w-[100%] h-[600px] z-[-1] bg-fixed bg-cover bg-center bg-[url('/cloud-bg.png')]">
                 {/* <img className="" src="/img/cloud-bg.png"></img> */}
             </div>
             <div className="flex items-end h-full">

@@ -11,9 +11,10 @@ function Projects({header, children}:Params){
 
 
     return(
-        <div className="w-full bg-lime-200">
+        <div className="w-full relative shadow-up">
+            <div className="absolute w-1/2 h-10 -left-1/2 z-20  "></div>
             <p className="font-bold text-4xl m-4">{header}</p>
-            <div className="flex flex-1 flex-wrap">
+            <div className="flex flex-1 flex-wrap ">
                 {children}
                 {orderArray.map(function(order, i){
                     return <div style={{order: `${order}`}} className='relative w-full'>

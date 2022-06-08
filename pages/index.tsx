@@ -83,61 +83,64 @@ const Home: NextPage<Props> = (props) => {
 
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center scroll-smooth">
+    <div className="flex min-h-screen flex-col relative items-center justify-center scroll-smooth -mx-10 bg-slate-100">
       <Head>
         <title>Arif Rahman</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="flex w-full flex-1 flex-col items-center max-w-screen-xl justify-center px-4 sm:px-10 md:px-20">
-        <Header />
+      <main className="relative flex w-full justify-center px-20 z-10">
+        <div className='flex w-full flex-1 flex-col items-center max-w-screen-xl justify-center -mx-6 sm:mx-4 md:mx-14'>
+          <Header />
 
-        <TopContent />
+          <TopContent />
 
 
-        <Links />
+          <Links />
 
-        <div className='flex flex-wrap h-[6px] w-full bg-slate-300 gap-1'>
-          <div className='basis-1/2 h-1/2 order-1 bg-red-200'></div>
-          <div className='basis-1/2 h-1/2 order-1 bg-red-200'></div>
-          <div className='basis-1/3 h-1/2 order-3 bg-green-200'></div>
-          <div className='basis-1/3 h-1/2 order-3 bg-green-200'></div>
-          <div className='basis-1/3 h-1/2 order-3 bg-green-200'></div>
-          <div className='basis-1/3 h-1/2 order-2 bg-sky-200'></div>
-          <div className='basis-1/3 h-1/2 order-4 bg-orange-200'></div>
-          <div className='basis-1/3 h-1/2 order-5 bg-orange-200'></div>
-        </div>
-
-        <Projects header={"My Projects"}>
-          {props.projects.map(function(project, i){
-            return <Project
-                    project={project}
-                    active ={detailIndex}
-                    changeDetail={ChangeDetail}
-                    changeStatus={ChangeStatus}
-                    />
-          })}
-          <ProjectDetailContainer active={detailIndex}
-                                  order={-2}
-                                  status={detailStatus}
-                                  data={props.projects}
-                                  statusFunction = {ChangeStatus}
-                                  changeDetail={ChangeDetail}
-                                  isMobileSize={isMobileSized}>
-            {props.projects.map(function(project, i){
-                return <ProjectDetail
-                        project={project}
-                        />
-            })}
-          </ProjectDetailContainer>
-            
           
-        </Projects>
 
-        <Footer />
+          <Projects header={"My Projects"}>
+            {props.projects.map(function(project, i){
+              return <Project
+                      project={project}
+                      active ={detailIndex}
+                      changeDetail={ChangeDetail}
+                      changeStatus={ChangeStatus}
+                      />
+            })}
+            <ProjectDetailContainer active={detailIndex}
+                                    order={-2}
+                                    status={detailStatus}
+                                    data={props.projects}
+                                    statusFunction = {ChangeStatus}
+                                    changeDetail={ChangeDetail}
+                                    isMobileSize={isMobileSized}>
+              {props.projects.map(function(project, i){
+                  return <ProjectDetail
+                          project={project}
+                          />
+              })}
+            </ProjectDetailContainer>
+              
+            
+          </Projects>
 
-        <div className='h-[1080px]'></div>
+          <div className='flex flex-wrap h-[6px] w-full bg-slate-300 gap-1'>
+            <div className='basis-1/2 h-1/2 order-1 bg-red-200'></div>
+            <div className='basis-1/2 h-1/2 order-1 bg-red-200'></div>
+            <div className='basis-1/3 h-1/2 order-3 bg-green-200'></div>
+            <div className='basis-1/3 h-1/2 order-3 bg-green-200'></div>
+            <div className='basis-1/3 h-1/2 order-3 bg-green-200'></div>
+            <div className='basis-1/3 h-1/2 order-2 bg-sky-200'></div>
+            <div className='basis-1/3 h-1/2 order-4 bg-orange-200'></div>
+            <div className='basis-1/3 h-1/2 order-5 bg-orange-200'></div>
+          </div>
 
+          <Footer />
+
+          <div className='h-[1080px]'></div>
+        </div>
       </main>
 
       <footer className="flex h-24 w-full items-center justify-center border-t">

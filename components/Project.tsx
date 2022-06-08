@@ -40,7 +40,7 @@ function Project(info:SimpleParams){
 
     return(
         <div style={{order: `${order}`, flexBasis:`${basisPer}%`}} 
-            className='relative h-[300px] w-full my-2'>
+            className='relative h-[200px] md:h-[300px] w-full my-2'>
             <div className='w-full h-full p-4'>
                 <a onClick={handleClick}>
                     <div className="h-full group cursor-pointer">
