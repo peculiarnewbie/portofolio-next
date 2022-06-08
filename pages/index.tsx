@@ -15,14 +15,15 @@ import ProjectDetail from '../components/ProjectDetail'
 import ProjectDetailContainer from '../components/ProjectDetailContainer'
 import useWindowDimension from '../components/functions/useWindowDimension'
 
-let detailOrder = -1;
-let prevOrder = detailOrder;
+let anchorOrder = -1;
+let prevOrder = anchorOrder;
 let changeOrder = false;
 
 const Home: NextPage<Props> = (props) => {
   const [detailStatus, setDetailStatus] = useState(false)
   const [detailChanging, setDetailChanging] = useState(false)
   const [detailIndex, setDetailIndex] = useState(0)
+  const [isMobileSized, setMobileSizeBool] = useState(true)
 
   function IsMobileSized(){
     const size = useWindowDimension();
@@ -31,32 +32,38 @@ const Home: NextPage<Props> = (props) => {
     }
     let bool = true
     if(size[0] > 1024) bool = false
+    if(isMobileSized != bool) setMobileSizeBool(bool)
     return bool
   }
 
-  let isMobileSized = IsMobileSized()
+  let burn = IsMobileSized()
+
+  let detailOrder = prevOrder + 1
+  if(isMobileSized){
+    detailOrder = 999
+  }
 
   const ChangeStatus = (status:boolean) => {
     setDetailStatus(status)
     if(!status){
-      detailOrder = -1;
+      anchorOrder = -1;
     }
   }
 
   const ChangeDetail = (index:number, order:number) => {
     if(index == detailIndex && !detailStatus) { 
       changeOrder = true
-      detailOrder = order+1
+      anchorOrder = order+1
       gotoDetail()
     }
 
     setDetailIndex(index)
 
-    if(isMobileSized) detailOrder = 999;
-    else if(prevOrder == order && detailStatus) detailOrder = order
-    else if(detailOrder == -1) detailOrder = order+1
-    else if(prevOrder < order) detailOrder = order-1;
-    else detailOrder = order+1
+    if(isMobileSized) anchorOrder = 999;
+    else if(prevOrder == order && detailStatus) anchorOrder = order
+    else if(anchorOrder == -1) anchorOrder = order+1
+    else if(prevOrder < order) anchorOrder = order-1;
+    else anchorOrder = order+1
 
     changeOrder = true
 
@@ -67,7 +74,7 @@ const Home: NextPage<Props> = (props) => {
 
   function gotoDetail(){
     if(changeOrder){
-      window.location.href = "#projectDetail-" + detailOrder;
+      window.location.href = "#projectDetail-" + anchorOrder;
       changeOrder = false;
     } 
   }
@@ -109,19 +116,19 @@ const Home: NextPage<Props> = (props) => {
                       changeStatus={ChangeStatus}
                       />
             })}
-            <ProjectDetailContainer active={detailIndex}
-                                    order={-2}
-                                    status={detailStatus}
-                                    data={props.projects}
-                                    statusFunction = {ChangeStatus}
-                                    changeDetail={ChangeDetail}
-                                    isMobileSize={isMobileSized}>
-              {props.projects.map(function(project, i){
-                  return <ProjectDetail
-                          project={project}
-                          />
-              })}
-            </ProjectDetailContainer>
+              <ProjectDetailContainer active={detailIndex}
+                                      order={detailOrder}
+                                      status={detailStatus}
+                                      data={props.projects}
+                                      statusFunction = {ChangeStatus}
+                                      changeDetail={ChangeDetail}
+                                      isMobileSize={isMobileSized}>
+                {props.projects.map(function(project, i){
+                    return <ProjectDetail
+                            project={project}
+                            />
+                })}
+              </ProjectDetailContainer>
               
             
           </Projects>

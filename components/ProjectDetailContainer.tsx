@@ -81,17 +81,19 @@ function ProjectDetailContainer(info:Params){
         translation[i] = i/childCount*100
     }
 
+    console.log(info.order)
+
 
     return(
         // <div style={{display:info.status? 'flex' : 'none', height:`${height}`, order: `${order}`,}}
-        <div style={{order: `${order}`, aspectRatio:info.status? '8/3' : '100000/1', opacity:info.status? '1' : '0',
+        <div style={{order: `${info.order}`, aspectRatio:info.status? '8/3' : '100000/1', opacity:info.status? '1' : '0',
                     marginTop:info.status? '1rem' : '0', marginBottom:info.status? '1rem' : '0',
                     transitionProperty: `all`,
                     transitionTimingFunction: `transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);`,
-                    transitionDuration: `300ms`
+                    transitionDuration: `500ms`
                     // padding:info.status? '1rem' : '0px'
             }}
-            className='relative rounded-lg w-full h-[600px] sm:h-[700px] md:h-[900px] lg:h-auto px-4 pb-8 lg:p-0 lg:mx-4 bg-slate-300'>
+            className='relative rounded-lg w-full h-[600px] sm:h-[700px] md:h-[900px] lg:h-auto px-4 pb-8 lg:p-0 lg:mx-4 '>
             {/* <div className='text-xl font-semibold mb-2'>Project Details</div> */}
             <div className='flex items-center absolute inset-y-0 -left-14'>
                 <div style={{cursor:info.status? 'pointer' : 'default' , pointerEvents:info.status? 'auto' : 'none'}} className='h-10 w-10' onClick={ChangeDetailPrev}>
@@ -104,7 +106,7 @@ function ProjectDetailContainer(info:Params){
                     transitionProperty: `all`,
                     transitionTimingFunction: `transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);`,
                     transitionDuration: `300ms`}}
-                    className='flex flex-col relative rounded-lg w-full h-[700px]  lg:h-full bg-red-300 overflow-hidden'
+                    className='flex flex-col relative rounded-lg w-full h-[700px]  lg:h-full overflow-hidden'
                 >
                     <div className='absolute h-full w-full z-10 shadow-inner-xl pointer-events-none'></div>
                     <div style={{transform: `translate${translateDir}(-${translation[info.active-1]}%)`,
@@ -124,7 +126,7 @@ function ProjectDetailContainer(info:Params){
                 </div> */}
                 <a onClick={HandleClose}>
                     <div style={{cursor:info.status? 'pointer' : 'default' , pointerEvents:info.status? 'auto' : 'none', display:info.isMobileSize? 'none' : 'block'}} 
-                        className="text-4xl font-semibold absolute right-6 top-6 h-10 w-10 cursor-pointer">x</div>
+                        className="text-2xl font-semibold absolute right-2 top-4 h-10 w-10 cursor-pointer">x</div>
                 </a>
 
             </div>

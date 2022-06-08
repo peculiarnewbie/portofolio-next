@@ -20,7 +20,7 @@ interface SimpleParams{
 function Project(info:SimpleParams){
 
     let title = info.project.properties.Name.title[0]?.plain_text
-    let description = info.project.properties.Description.rich_text[0]?.plain_text
+    let summary = info.project.properties.Summary.rich_text[0]?.plain_text
     let link = info.project.properties.Link.url
     let image_url = info.project.properties.Images.files[0]?.file?.url
     let type = info.project.properties.Type.select?.name
@@ -43,7 +43,7 @@ function Project(info:SimpleParams){
             className='relative h-[200px] md:h-[300px] w-full my-2'>
             <div className='w-full h-full p-4'>
                 <a onClick={handleClick}>
-                    <div className="h-full group cursor-pointer">
+                    <div className="h-full group cursor-pointer ">
                         <div className="flex rounded-lg w-full h-full shadow-lg shadow-gray-400 transition-all ease-out group-hover:h-2/5">
                             {/* <img src={image_url} className="absolute object-cover h-full w-full group-hover:scale-75"/> */}
                             <div className="absolute left-2 top-8 p-2 rounded h-fit w-fit 
@@ -53,11 +53,14 @@ function Project(info:SimpleParams){
                             </div>
                             <div className="flex relative bg-sky-300 w-full rounded-lg justify-center overflow-hidden">
                                 <img src={image_url} className="absolute object-cover h-full w-full group-hover:scale-150 transition-all"/>
-                                <div className="flex  h-2/5 bg-red-100 self-end transition-all ease-in group-hover:h-full z-10">
+                                <div className="flex  h-2/5 self-end transition-all ease-in group-hover:h-full z-10">
                                     <div className="text-4xl font-semibold text-white self-center drop-shadow-md">{title}</div>
                                 </div>
                             </div>
                             
+                        </div>
+                        <div className="h-3/5 w-4/5 absolute bottom-4 left-[10%] rounded-lg bg-white -z-10 shadow-inner-lg px-4 pt-8 text-center overflow-auto text-xs md:text-base">
+                            {summary}
                         </div>
                     </div>
                 </a>
