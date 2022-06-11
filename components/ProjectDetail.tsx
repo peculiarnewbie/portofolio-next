@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import parseNotionObject from '../pages/api/parseNotionObject'
 
 interface Params{
     project:any
@@ -6,12 +7,7 @@ interface Params{
 
 function ProjectDetail(info:Params){
 
-    let title = info.project?.properties.Name.title[0]?.plain_text
-    let description = info.project?.properties.Description.rich_text[0]?.plain_text
-    let link = info.project?.properties.Link.url
-    let image_url = info.project?.properties.Images.files[0]?.file?.url
-    let type = info.project?.properties.Type.select?.name
-    let position = info.project?.properties.Position?.number
+    const {title, description, link, image_url, type} = parseNotionObject(info.project);
 
     return(
         <div className="basis-1/6 lg:w-full">

@@ -1,5 +1,6 @@
 import { useEffect } from "react"
 import {CalculateOrder, CalculateBasis} from "./functions/Calculations"
+import parseNotionObject from "../pages/api/parseNotionObject"
 
 interface Params{
     title:string
@@ -19,12 +20,7 @@ interface SimpleParams{
 
 function Project(info:SimpleParams){
 
-    let title = info.project.properties.Name.title[0]?.plain_text
-    let summary = info.project.properties.Summary.rich_text[0]?.plain_text
-    let link = info.project.properties.Link.url
-    let image_url = info.project.properties.Images.files[0]?.file?.url
-    let type = info.project.properties.Type.select?.name
-    let position = info.project.properties.Position?.number
+    const {title, link, image_url, type, position, summary} = parseNotionObject(info.project)
 
     async function handleClick() {
         info.changeDetail(position, order)

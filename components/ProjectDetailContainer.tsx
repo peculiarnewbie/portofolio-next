@@ -26,7 +26,6 @@ interface Translation {
 
 function ProjectDetailContainer(info:Params){
 
-
     const HandleClose = () => {
         info.statusFunction(false)
     }
@@ -93,7 +92,7 @@ function ProjectDetailContainer(info:Params){
                     transitionDuration: `500ms`
                     // padding:info.status? '1rem' : '0px'
             }}
-            className='relative rounded-lg w-full h-[600px] sm:h-[700px] md:h-[900px] lg:h-auto px-4 pb-8 lg:p-0 lg:mx-4 '>
+            className='relative rounded-lg w-full h-[600px] sm:h-[700px] md:h-[900px] lg:h-auto px-4 pb-8 lg:p-0 lg:mx-4'>
             {/* <div className='text-xl font-semibold mb-2'>Project Details</div> */}
             <div className='flex items-center absolute inset-y-0 -left-14'>
                 <div style={{cursor:info.status? 'pointer' : 'default' , pointerEvents:info.status? 'auto' : 'none'}} className='h-10 w-10' onClick={ChangeDetailPrev}>
