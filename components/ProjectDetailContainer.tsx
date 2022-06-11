@@ -36,8 +36,6 @@ function ProjectDetailContainer(info:Params){
         if(next) newPosition = position+1 ;
         else newPosition = position-1;
 
-        console.log(`before ${position}, after ${newPosition}`)
-
         let order = CalculateOrder(newPosition)
 
         info.changeDetail(newPosition, order)
@@ -61,13 +59,18 @@ function ProjectDetailContainer(info:Params){
     if(info.active > 5) order = 5
     else if(info.active > 2) order = 3
 
-    let translateDir ='Y'
-    let width = 'auto'
+    let translateDir ='undefined'
+    let width = 'undefined'
+    let display = ''
 
     if(info.isMobileSize){
         order = 999
         translateDir = 'X'
         width = '600%'
+    }
+    else{
+        translateDir = 'Y'
+        width = '100%'
     }
 
     if(!info.status) height = '0' ;
@@ -80,7 +83,7 @@ function ProjectDetailContainer(info:Params){
         translation[i] = i/childCount*100
     }
 
-    console.log(info.order)
+    console.log(info.isMobileSize)
 
 
     return(
@@ -109,10 +112,9 @@ function ProjectDetailContainer(info:Params){
                 >
                     <div className='absolute h-full w-full z-10 shadow-inner-xl pointer-events-none'></div>
                     <div style={{transform: `translate${translateDir}(-${translation[info.active-1]}%)`,
-                                width: `${width}`,
                                 transitionProperty: `transform`,
                                 transitionTimingFunction: `transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);`,
-                                transitionDuration: `500ms`}} className='flex lg:flex-col h-full lg:h-auto w-auto'>
+                                transitionDuration: `500ms`}} className='flex lg:flex-col h-full lg:h-auto w-[600%] lg:w-auto'>
                         {info.children}
                     </div>
 
@@ -124,8 +126,8 @@ function ProjectDetailContainer(info:Params){
                     })}
                 </div> */}
                 <a onClick={HandleClose}>
-                    <div style={{cursor:info.status? 'pointer' : 'default' , pointerEvents:info.status? 'auto' : 'none', display:info.isMobileSize? 'none' : 'block'}} 
-                        className="text-2xl font-semibold absolute right-2 top-4 h-10 w-10 cursor-pointer">x</div>
+                    <div style={{cursor:info.status? 'pointer' : 'default' , pointerEvents:info.status? 'auto' : 'none',}} 
+                        className="hidden lg:block text-2xl font-semibold absolute right-2 top-4 h-10 w-10 cursor-pointer">x</div>
                 </a>
 
             </div>

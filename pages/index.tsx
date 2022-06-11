@@ -25,6 +25,8 @@ const Home: NextPage<Props> = (props) => {
   const [detailIndex, setDetailIndex] = useState(0)
   const [isMobileSized, setMobileSizeBool] = useState(true)
 
+  // console.log(isMobileSized)
+
   function IsMobileSized(){
     const size = useWindowDimension();
     if (typeof size == "undefined") {
@@ -78,15 +80,6 @@ const Home: NextPage<Props> = (props) => {
       changeOrder = false;
     } 
   }
-
-  
-
-  // useEffect(() => {
-  //   if(changeOrder){
-  //     window.location.href = "#projectDetail-" + detailOrder;
-  //     changeOrder = false;
-  //   } 
-  // }, [detailIndex])
 
 
   return (
