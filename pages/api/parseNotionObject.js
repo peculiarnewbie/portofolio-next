@@ -5,11 +5,13 @@ const parseNotionObject = (object) => {
     let link = object?.properties.Link.url;
     let image_url = object?.properties.Images.files[0]?.file?.url;
     if(image_url == undefined) image_url = object?.properties.Images.files[0]?.external?.url;
+    let images = object?.properties.Images.files
     let type = object?.properties.Type.select?.name;
     let position = object?.properties.Position?.number;
     let summary = object.properties.Summary.rich_text[0]?.plain_text
+    let videoID = object.properties.VideoID.rich_text[0]?.plain_text
 
-    return{title, description, link, image_url, type, position, summary};
+    return{title, description, link, image_url, type, position, summary, videoID, images};
 }
 
 export default parseNotionObject
