@@ -2,7 +2,6 @@ import { type } from 'os';
 import React, { useState, useEffect } from 'react';
 import ProjectDetail from './ProjectDetail';
 import {CalculateOrder} from './functions/Calculations'
-import useWindowDimension from '../components/functions/useWindowDimension'
 
 
 interface Params{
@@ -13,7 +12,7 @@ interface Params{
     changeDetail:any
     data:[any]
     children:any
-    isMobileSize:boolean | undefined
+    isMobileSize:boolean
 }
 
 type StatusFunction = {
@@ -53,34 +52,33 @@ function ProjectDetailContainer(info:Params){
         else ChangeDetail(true, position)
     }
 
-    let height = '[500px]'
-
     let order = 1
     if(info.active > 5) order = 5
     else if(info.active > 2) order = 3
 
-    let translateDir ='undefined'
-    let width = 'undefined'
+    let translateDir ='X'
+    let width = '600'
     let display = ''
 
     if(info.isMobileSize){
         order = 999
         translateDir = 'X'
-        width = '600%'
+        width = '600'
     }
     else{
         translateDir = 'Y'
-        width = '100%'
+        width = '100'
     }
 
-    if(!info.status) height = '0' ;
-
     var translation = new Array();
+
+    var which = 1;
+    if(info.isMobileSize) which = 0;
 
     let childCount = info.data.length
 
     for(var i=0; i < childCount; i++){
-        translation[i] = i/childCount*100
+        translation[i] = i*100
     }
 
     console.log(info.isMobileSize)
@@ -95,7 +93,7 @@ function ProjectDetailContainer(info:Params){
                     transitionDuration: `500ms`
                     // padding:info.status? '1rem' : '0px'
             }}
-            className='relative rounded-lg w-full h-[600px] sm:h-[700px] md:h-[900px] lg:h-auto px-4 pb-8 lg:p-0 lg:mx-4'>
+            className='relative rounded-lg w-full h-[600px] sm:h-[800px] md:h-[1000px] lg:h-auto px-4 pb-8 lg:p-0 lg:mx-4'>
             {/* <div className='text-xl font-semibold mb-2'>Project Details</div> */}
             <div className='flex items-center absolute inset-y-0 -left-14'>
                 <div style={{cursor:info.status? 'pointer' : 'default' , pointerEvents:info.status? 'auto' : 'none'}} className='h-10 w-10' onClick={ChangeDetailPrev}>
@@ -114,17 +112,10 @@ function ProjectDetailContainer(info:Params){
                     <div style={{transform: `translate${translateDir}(-${translation[info.active-1]}%)`,
                                 transitionProperty: `transform`,
                                 transitionTimingFunction: `transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);`,
-                                transitionDuration: `500ms`}} className='flex lg:flex-col h-full lg:h-auto w-[600%] lg:w-auto'>
+                                transitionDuration: `500ms`,}} className='flex lg:flex-col h-full w-full flex-nowrap'>
                         {info.children}
                     </div>
-
-                    {/* <ProjectDetail project={data} closeFunction={HandleClose} changeDetail={ChangeDetail}/> */}
                 </div>
-                {/* <div className='absolute h-1 w-1 bg-black'>
-                    {translation.map(function(range, i){
-                        return <div className={`-translate-y-[${range}%]`}></div>
-                    })}
-                </div> */}
                 <a onClick={HandleClose}>
                     <div style={{cursor:info.status? 'pointer' : 'default' , pointerEvents:info.status? 'auto' : 'none',}} 
                         className="hidden lg:block text-2xl font-semibold absolute right-2 top-4 h-10 w-10 cursor-pointer">x</div>

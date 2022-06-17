@@ -18,6 +18,7 @@ import useWindowDimension from '../components/functions/useWindowDimension'
 let anchorOrder = -1;
 let prevOrder = anchorOrder;
 let changeOrder = false;
+let wasRefresh = false;
 
 const Home: NextPage<Props> = (props) => {
   const [detailStatus, setDetailStatus] = useState(false)
@@ -25,12 +26,12 @@ const Home: NextPage<Props> = (props) => {
   const [detailIndex, setDetailIndex] = useState(0)
   const [isMobileSized, setMobileSizeBool] = useState(true)
 
-  // console.log(isMobileSized)
+  // let mobileState = true
 
   function IsMobileSized(){
     const size = useWindowDimension();
     if (typeof size == "undefined") {
-        return;
+        return false;
     }
     let bool = true
     if(size[0] > 1024) bool = false
@@ -39,6 +40,7 @@ const Home: NextPage<Props> = (props) => {
   }
 
   let burn = IsMobileSized()
+
 
   let detailOrder = prevOrder + 1
   if(isMobileSized){
@@ -56,7 +58,7 @@ const Home: NextPage<Props> = (props) => {
     if(index == detailIndex && !detailStatus) { 
       changeOrder = true
       anchorOrder = order+1
-      gotoDetail()
+      gotoAnchor(anchorOrder, true)
     }
 
     setDetailIndex(index)
@@ -69,17 +71,32 @@ const Home: NextPage<Props> = (props) => {
 
     changeOrder = true
 
-    gotoDetail()
+    gotoAnchor(anchorOrder, true)
 
     prevOrder = order
   }
 
-  function gotoDetail(){
-    if(changeOrder){
+  function gotoAnchor(anchorOrder:number, detail:boolean){
+    if(!detail) window.location.href = "#"
+    else if(changeOrder){
       window.location.href = "#projectDetail-" + anchorOrder;
       changeOrder = false;
+      wasRefresh = true;
     } 
   }
+
+  // To go back to top when reloading
+  useEffect(() => {
+    window.addEventListener("beforeunload", goBack);
+    return () => {
+      gotoAnchor(0, false)
+      window.removeEventListener("beforeunload", goBack);
+    };
+  }, []);
+  const goBack = (e:any) => {
+    
+  };
+  
 
 
   return (
