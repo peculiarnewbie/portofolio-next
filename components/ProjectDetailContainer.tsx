@@ -25,6 +25,8 @@ interface Translation {
 
 function ProjectDetailContainer(info:Params){
 
+    let childCount = info.data.length
+
     const HandleClose = () => {
         info.statusFunction(false)
     }
@@ -35,9 +37,9 @@ function ProjectDetailContainer(info:Params){
         if(next) newPosition = position+1 ;
         else newPosition = position-1;
 
-        let order = CalculateOrder(newPosition)
+        let newOrder = CalculateOrder(newPosition)
 
-        info.changeDetail(newPosition, order)
+        info.changeDetail(newPosition, newOrder)
     }
 
     let position = info.data[info.active-1]?.properties.Position?.number
@@ -52,41 +54,17 @@ function ProjectDetailContainer(info:Params){
         else ChangeDetail(true, position)
     }
 
-    let order = 1
-    if(info.active > 5) order = 5
-    else if(info.active > 2) order = 3
-
     let translateDir ='X'
-    let width = '600'
-    let display = ''
 
-    if(info.isMobileSize){
-        order = 999
-        translateDir = 'X'
-        width = '600'
-    }
-    else{
-        translateDir = 'Y'
-        width = '100'
-    }
-
-    var translation = new Array();
-
-    var which = 1;
-    if(info.isMobileSize) which = 0;
-
-    let childCount = info.data.length
-
-    for(var i=0; i < childCount; i++){
-        translation[i] = i*100
-    }
+    if(info.isMobileSize) translateDir = 'X'
+    else translateDir = 'Y'
 
     console.log(info.isMobileSize)
 
 
     return(
         // <div style={{display:info.status? 'flex' : 'none', height:`${height}`, order: `${order}`,}}
-        <div style={{order: `${info.order}`, aspectRatio:info.status? '8/3' : '100000/1', opacity:info.status? '1' : '0',
+        <div style={{order: `${info.order}`, aspectRatio:info.status? '14/5' : '100000/1', opacity:info.status? '1' : '0',
                     marginTop:info.status? '1rem' : '0', marginBottom:info.status? '1rem' : '0',
                     transitionProperty: `all`,
                     transitionTimingFunction: `transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);`,
@@ -109,7 +87,7 @@ function ProjectDetailContainer(info:Params){
                     className='flex flex-col relative rounded-lg w-full h-[700px]  lg:h-full overflow-hidden'
                 >
                     <div className='absolute h-full w-full z-10 shadow-inner-xl pointer-events-none'></div>
-                    <div style={{transform: `translate${translateDir}(-${translation[info.active-1]}%)`,
+                    <div style={{transform: `translate${translateDir}(-${info.active-1}00%)`,
                                 transitionProperty: `transform`,
                                 transitionTimingFunction: `transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);`,
                                 transitionDuration: `500ms`,}} className='flex lg:flex-col h-full w-full flex-nowrap'>
