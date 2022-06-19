@@ -14,30 +14,35 @@ import Project from '../components/Project'
 import { projects } from './api/NotionAPI'
 import ProjectDetail from '../components/ProjectDetail'
 import ProjectDetailContainer from '../components/ProjectDetailContainer'
-import useWindowDimension from '../components/functions/useWindowDimension'
+import Spline from '../components/Spline'
+
+import useMediaQuery from '../components/functions/useMediaQuery'
 
 let anchorOrder = -1;
 let prevOrder = anchorOrder;
 let changeOrder = false;
+let afterfirst = false;
 
 const Home: NextPage<Props> = (props) => {
   const [detailStatus, setDetailStatus] = useState(false)
   const [detailChanging, setDetailChanging] = useState(false)
   const [detailIndex, setDetailIndex] = useState(0)
-  const [isMobileSized, setMobileSizeBool] = useState(true)
+  // const [isMobileSized, setMobileSizeBool] = useState(true)
 
-  function IsMobileSized(){
-    const size = useWindowDimension();
-    if (typeof size == "undefined") {
-        return false;
-    }
-    let bool = true
-    if(size[0] > 1024) bool = false
-    if(isMobileSized != bool) setMobileSizeBool(bool)
-    return bool
-  }
+  let isMobileSized = useMediaQuery(1024);
 
-  let burn = IsMobileSized()
+  // function IsMobileSized(){
+  //   const size = useWindowDimension();
+  //   if (typeof size == "undefined") {
+  //       return false;
+  //   }
+  //   let bool = true
+  //   if(size[0] > 1024) bool = false
+  //   if(isMobileSized != bool) setMobileSizeBool(bool)
+  //   return bool
+  // }
+
+  // let burn = IsMobileSized();
 
 
   let detailOrder = prevOrder + 1
@@ -118,10 +123,6 @@ const Home: NextPage<Props> = (props) => {
           <Header />
           <TopContent />
 
-          <Links />
-
-          
-
           <Projects header={"My Projects"}>
             {props.projects.map(function(project, i){
               return <Project
@@ -129,6 +130,7 @@ const Home: NextPage<Props> = (props) => {
                       active ={detailIndex}
                       changeDetail={ChangeDetail}
                       changeStatus={ChangeStatus}
+                      isMobileSize={isMobileSized}
                       />
             })}
                 <ProjectDetailContainer active={detailIndex}
@@ -147,15 +149,18 @@ const Home: NextPage<Props> = (props) => {
             
           </Projects>
 
+          
+
           <div className='flex flex-wrap h-[6px] w-full bg-slate-300 gap-1'>
-            <div className='basis-1/2 h-1/2 order-1 bg-red-200'></div>
+            <div className='basis-[1/2] h-1/2 order-1 bg-red-200'></div>
             <div className='basis-1/2 h-1/2 order-1 bg-red-200'></div>
             <div className='basis-1/3 h-1/2 order-3 bg-green-200'></div>
-            <div className='basis-1/3 h-1/2 order-3 bg-green-200'></div>
+            <div className='basis-[1/3] h-1/2 order-3 bg-green-200'></div>
             <div className='basis-1/3 h-1/2 order-3 bg-green-200'></div>
             <div className='basis-1/3 h-1/2 order-2 bg-sky-200'></div>
             <div className='basis-1/3 h-1/2 order-4 bg-orange-200'></div>
             <div className='basis-1/3 h-1/2 order-5 bg-orange-200'></div>
+            <div className='basis-1/4 h-1/2 order-5 bg-orange-200'></div>
           </div>
 
           <Footer />

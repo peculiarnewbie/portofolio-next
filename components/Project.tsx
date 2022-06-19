@@ -2,6 +2,7 @@ import { useEffect } from "react"
 
 import {CalculateOrder, CalculateBasis} from "./functions/Calculations"
 import parseNotionObject from "../pages/api/parseNotionObject"
+import useMediaQuery from '../components/functions/useMediaQuery'
 
 interface Params{
     title:string
@@ -17,11 +18,13 @@ interface SimpleParams{
     active:number
     changeStatus:any
     changeDetail:any
+    isMobileSize:boolean
 }
 
 function Project(info:SimpleParams){
 
     const {title, link, image_url, type, position, summary} = parseNotionObject(info.project)
+    const isSmallScreen = useMediaQuery(768);
 
     async function handleClick() {
         info.changeDetail(position, order)
@@ -33,17 +36,22 @@ function Project(info:SimpleParams){
     let basis = CalculateBasis(position)
     let order = CalculateOrder(position)
 
-    let basisPer = (100/basis).toString()
+    let basisPer 
+    if(!isSmallScreen) basisPer = `${(100/basis).toString()}%`
+    else basisPer = "100%"
+
+    console.log(basisPer);
 
     return(
-        <div style={{order: `${order}`, flexBasis:`${basisPer}%`}} 
+        <div style={{order: `${order}`, flexBasis:`${basisPer}`}} 
             className='relative h-[200px] md:h-[300px] w-full my-2'>
             <div className='w-full h-full p-4'>
                     <a onClick={handleClick}>
                         <div className="h-full group cursor-pointer ">
-                            <div className="flex rounded-lg w-full h-full shadow-lg shadow-gray-400 transition-all ease-out group-hover:h-2/5">
+                            <div className="flex relative rounded-lg w-full h-full shadow-lg shadow-gray-400 transition-all ease-out group-hover:h-2/5">
+                                <div className="absolute h-full w-full rounded-lg z-10 shadow-inner-project pointer-events-none"></div>
                                 {/* <img src={image_url} className="absolute object-cover h-full w-full group-hover:scale-75"/> */}
-                                <div className="absolute left-2 top-8 p-2 rounded h-fit w-fit 
+                                <div className="absolute -left-4 top-4 p-2 rounded h-fit w-fit 
                                 transition-all ease-out shadow-sm z-10
                                 group-hover:w-0 group-hover:px-0 bg-white">
                                     <div className="truncate">{type}</div>
@@ -51,7 +59,7 @@ function Project(info:SimpleParams){
                                 <div className="flex relative bg-sky-300 w-full rounded-lg justify-center overflow-hidden">
                                     <img src={image_url} className="absolute object-cover h-full w-full group-hover:scale-150 transition-all"/>
                                     <div className="flex  h-2/5 self-end transition-all ease-in group-hover:h-full z-10">
-                                        <div className="text-4xl font-semibold text-white self-center drop-shadow-md">{title}</div>
+                                        <div className="text-4xl font-semibold text-white self-center drop-shadow-text">{title}</div>
                                     </div>
                                 </div>
                                 
