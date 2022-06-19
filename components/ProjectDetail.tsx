@@ -50,7 +50,9 @@ function ProjectDetail(info:Params){
                                     transitionProperty: `transform`,
                                     transitionTimingFunction: `transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);`,
                                     transitionDuration: `500ms`,}} className='flex h-full w-full flex-nowrap'>
-                                <YoutubeIframe haveVideo={haveVideo} videoID={videoID}/>
+                                {haveVideo && (
+                                    <YoutubeIframe haveVideo={haveVideo} videoID={videoID}/>
+                                )}
                                 {imageLinks.map(function(image, i){
                                     return <div className='w-full shrink-0 h-full'>
                                                 <img className='object-cover h-full w-full' src={image}></img>
@@ -62,26 +64,29 @@ function ProjectDetail(info:Params){
                             {/* <img src={image_url} className="absolute object-cover h-full w-full "/> */}
                         </div>
                         <div className=' h-2 w-full'></div>
-                        <div className='flex relative h-16 sm:h-24 lg:h-1/5 w-full bg-slate-500'>
-                            {haveVideo && (
-                                <div onClick={ChangeMedia(-1)} className='relative shrink-0 h-full aspect-video brightness-75'>
-                                    
-                                    <img src='/img/Youtube.svg' className='absolute drop-shadow h-1/2 top-1/4 left-1/4'/>
-                                    
-                                    <img className='object-cover h-full w-full' src={videoThumb}></img>
-                                </div>
-                            )}
-                            {imageLinks.map(function(image, i){
-                                return <div onClick={ChangeMedia(i)} className='shrink-0 h-full aspect-video brightness-75'>
-                                            <img className='object-cover h-full w-full' src={image}></img>
+                        <div className='relative h-16 sm:h-24 lg:h-1/5 w-full'>
+                            <div className='flex absolute -top-5 h-[125%] w-full scroll'>
+                                <div className='flex h-[80%] absolute top-5 bg-slate-500 w-full'>
+                                    {haveVideo && (
+                                        <div onClick={ChangeMedia(-1)} className='relative shrink-0 h-full aspect-video brightness-75'>
+                                            
+                                            <img src='/img/Youtube.svg' className='absolute drop-shadow h-1/2 top-1/4 left-1/4'/>
+                                            
+                                            <img className='object-cover h-full w-full' src={videoThumb}></img>
                                         </div>
-                            })}
-                            <div style={{transform: `translateX(${mediaIndex}00%)`}}
-                                    className='absolute shrink-0 h-full aspect-video border-4 border-slate-200 backdrop-brightness-150'>
-                                <img className='absolute  left-[40%] -top-[21%] h-1/5' src='/img/Uptick.svg'></img>
+                                    )}
+                                    {imageLinks.map(function(image, i){
+                                        return <div onClick={ChangeMedia(i)} className='shrink-0 h-full aspect-video brightness-75'>
+                                                    <img className='object-cover h-full w-full' src={image}/>
+                                                </div>
+                                    })}
+                                    <div style={{transform: `translateX(${mediaIndex}00%)`}}
+                                            className='absolute shrink-0 h-full top-0 aspect-video border-4 border-slate-200 backdrop-brightness-150'>
+                                        <img className='absolute  left-[40%] -top-[21%] h-1/5 z-100' src='/img/Uptick.svg'></img>
+                                    </div>
+                                </div>
                             </div>
-
-                            <div className='flex items-center absolute inset-y-0 bg-[#ffffff80] w-6 p-1 '>
+                            {/* <div className='flex items-center absolute inset-y-0 bg-[#ffffff80] w-6 p-1 '>
                                 <div className='flex items-center h-10 w-6 '>
                                     <img src='/img/arrow-left.svg' className='drop-shadow'/>
                                 </div>
@@ -90,17 +95,22 @@ function ProjectDetail(info:Params){
                                 <div className='flex items-center h-10 w-6'>
                                     <img src='/img/arrow-right.svg' className='drop-shadow'/>
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
                             
                     </div>
-                    <div className='p-4 h-auto'>
+                    <div className='relative w-full lg:w-1/2 p-4 h-auto grow '>
                         <div className="text-4xl font-semibold text-black">{title}</div>
                         <div className=" h-fit w-fit 
                         transition-all ease-out shadow-sm bg-white">
                             <div className="truncate">{type}</div>
                         </div>
-                        
+                        <a href={link} target="_blank">
+                            <div className='flex items-center p-4 bg-indigo-500 w-32 h-16 rounded-lg shadow-lg absolute bottom-10 right-10'>
+                                <div className='font-bold text-2xl text-white'>Open {'->'}</div>
+                            </div>
+                            
+                        </a>
                     </div>
                 </div>
             </div>

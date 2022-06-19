@@ -7,6 +7,8 @@
   },
   "dependencies": {
     "@notionhq/client": "^1.0.4",
+    "@splinetool/react-spline": "^2.2.1",
+    "@splinetool/runtime": "^0.9.69",
     "next": "latest",
     "react": "18.1.0",
     "react-dom": "18.1.0",

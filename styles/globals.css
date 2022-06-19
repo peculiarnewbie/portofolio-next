@@ -12,6 +12,12 @@
     
 }
 
+@layer components{
+    .project-card {
+        flex-basis: var(--basis);
+      }
+}
+
 @layer utilities{
     .filter-black{
         filter: invert(0%) sepia(4%) saturate(0%) hue-rotate(309deg) brightness(100%) contrast(107%);
@@ -19,10 +25,28 @@
     .shadow-inner-xl{
         box-shadow: inset 0px 5px 20px 10px rgb(0 0 0 / 0.25);
     }
+    .shadow-inner-project{
+        box-shadow: inset -5px -180px 90px -90px rgb(255 255 255 / 0.25);
+
+    }
     .shadow-inner-lg{
         box-shadow: inset 0px 5px 10px 10px rgb(0 0 0 / 0.15);
     }
     .shadow-up{
         box-shadow:  0px -15px 20px -12px rgb(0 0 0 / 0.05);
+    }
+    .drop-shadow-text{
+        text-shadow: 0px 5px 10px rgb(0 0 0 / 0.6), 0px -5px 10px rgb(0 0 0 / 0.5);
+    }
+    .scroll{
+        /*
+        -ms-overflow-style: none;  /* IE and Edge */
+        /*
+        scrollbar-width: none;  /* Firefox */
+        overflow-x: auto;
+        overflow-y: hidden;
+    }
+    .scroll::-webkit-scrollbar {
+        /* display: none; */
     }
 }
