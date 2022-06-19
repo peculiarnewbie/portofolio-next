@@ -3,6 +3,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 
 import { useEffect, useState } from 'react'
+import { Link, animateScroll as scroll } from "react-scroll";
 
 import Header from '../components/Header'
 import Footer from '../components/Footer'
@@ -18,15 +19,12 @@ import useWindowDimension from '../components/functions/useWindowDimension'
 let anchorOrder = -1;
 let prevOrder = anchorOrder;
 let changeOrder = false;
-let wasRefresh = false;
 
 const Home: NextPage<Props> = (props) => {
   const [detailStatus, setDetailStatus] = useState(false)
   const [detailChanging, setDetailChanging] = useState(false)
   const [detailIndex, setDetailIndex] = useState(0)
   const [isMobileSized, setMobileSizeBool] = useState(true)
-
-  // let mobileState = true
 
   function IsMobileSized(){
     const size = useWindowDimension();
@@ -77,12 +75,21 @@ const Home: NextPage<Props> = (props) => {
   }
 
   function gotoAnchor(anchorOrder:number, detail:boolean){
-    if(!detail) window.location.href = "#"
-    else if(changeOrder){
-      window.location.href = "#projectDetail-" + anchorOrder;
-      changeOrder = false;
-      wasRefresh = true;
-    } 
+    if(changeOrder || !detail){
+      let element
+      if(!detail) element = document.getElementById('top');
+      else element = document.getElementById(`projectDetail-${anchorOrder}`);
+      if(element == null) return;
+      element.scrollIntoView({
+          block: 'start',
+          behavior: 'smooth' // smooth scroll
+      }) 
+    }
+    // if(!detail) window.location.href = "#"
+    // else if(changeOrder){
+    //   window.location.href = "#projectDetail-" + anchorOrder;
+    //   changeOrder = false;
+    // } 
   }
 
   // To go back to top when reloading
@@ -109,9 +116,7 @@ const Home: NextPage<Props> = (props) => {
       <main className="relative flex w-full justify-center px-20 z-10">
         <div className='flex w-full flex-1 flex-col items-center max-w-screen-xl justify-center -mx-6 sm:mx-4 md:mx-14'>
           <Header />
-
           <TopContent />
-
 
           <Links />
 
@@ -126,20 +131,19 @@ const Home: NextPage<Props> = (props) => {
                       changeStatus={ChangeStatus}
                       />
             })}
-              <ProjectDetailContainer active={detailIndex}
-                                      order={detailOrder}
-                                      status={detailStatus}
-                                      data={props.projects}
-                                      statusFunction = {ChangeStatus}
-                                      changeDetail={ChangeDetail}
-                                      isMobileSize={isMobileSized}>
-                {props.projects.map(function(project, i){
-                    return <ProjectDetail
-                            project={project}
-                            />
-                })}
-              </ProjectDetailContainer>
-              
+                <ProjectDetailContainer active={detailIndex}
+                                        order={detailOrder}
+                                        status={detailStatus}
+                                        data={props.projects}
+                                        statusFunction = {ChangeStatus}
+                                        changeDetail={ChangeDetail}
+                                        isMobileSize={isMobileSized}>
+                  {props.projects.map(function(project, i){
+                      return <ProjectDetail
+                              project={project}
+                              />
+                  })}
+                </ProjectDetailContainer>
             
           </Projects>
 

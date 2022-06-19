@@ -63,12 +63,14 @@ function ProjectDetail(info:Params){
                         </div>
                         <div className=' h-2 w-full'></div>
                         <div className='flex relative h-16 sm:h-24 lg:h-1/5 w-full bg-slate-500'>
-                            <div onClick={ChangeMedia(-1)} style={{display:haveVideo? 'block' : 'none'}} className='relative shrink-0 h-full aspect-video brightness-75'>
-                                
-                                <img src='/img/Youtube.svg' className='absolute drop-shadow h-1/2 top-1/4 left-1/4'/>
-                                
-                                <img className='object-cover h-full w-full' src={videoThumb}></img>
-                            </div>
+                            {haveVideo && (
+                                <div onClick={ChangeMedia(-1)} className='relative shrink-0 h-full aspect-video brightness-75'>
+                                    
+                                    <img src='/img/Youtube.svg' className='absolute drop-shadow h-1/2 top-1/4 left-1/4'/>
+                                    
+                                    <img className='object-cover h-full w-full' src={videoThumb}></img>
+                                </div>
+                            )}
                             {imageLinks.map(function(image, i){
                                 return <div onClick={ChangeMedia(i)} className='shrink-0 h-full aspect-video brightness-75'>
                                             <img className='object-cover h-full w-full' src={image}></img>

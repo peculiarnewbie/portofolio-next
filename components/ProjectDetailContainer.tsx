@@ -59,12 +59,9 @@ function ProjectDetailContainer(info:Params){
     if(info.isMobileSize) translateDir = 'X'
     else translateDir = 'Y'
 
-    console.log(info.isMobileSize)
-
 
     return(
-        // <div style={{display:info.status? 'flex' : 'none', height:`${height}`, order: `${order}`,}}
-        <div style={{order: `${info.order}`, aspectRatio:info.status? '14/5' : '100000/1', opacity:info.status? '1' : '0',
+        <div id="test1" style={{order: `${info.order}`, aspectRatio:info.status? '14/5' : '100000/1', opacity:info.status? '1' : '0',
                     marginTop:info.status? '1rem' : '0', marginBottom:info.status? '1rem' : '0',
                     transitionProperty: `all`,
                     transitionTimingFunction: `transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);`,
