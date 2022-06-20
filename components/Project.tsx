@@ -23,7 +23,7 @@ interface SimpleParams{
 
 function Project(info:SimpleParams){
 
-    const {title, link, image_url, type, position, summary} = parseNotionObject(info.project)
+    const {title, link, image_url, type, position, summary, basis} = parseNotionObject(info.project)
     const isSmallScreen = useMediaQuery(768);
 
     async function handleClick() {
@@ -31,9 +31,6 @@ function Project(info:SimpleParams){
         info.changeStatus(true)
     }
 
-
-
-    let basis = CalculateBasis(position)
     let order = CalculateOrder(position)
 
     let basisPer 
