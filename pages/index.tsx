@@ -26,24 +26,12 @@ let afterfirst = false;
 const Home: NextPage<Props> = (props) => {
   const [detailStatus, setDetailStatus] = useState(false)
   const [detailChanging, setDetailChanging] = useState(false)
-  const [detailIndex, setDetailIndex] = useState(0)
+  const [detailIndex, setDetailIndex] = useState(1)
   // const [isMobileSized, setMobileSizeBool] = useState(true)
 
   let isMobileSized = useMediaQuery(1024);
 
-  // function IsMobileSized(){
-  //   const size = useWindowDimension();
-  //   if (typeof size == "undefined") {
-  //       return false;
-  //   }
-  //   let bool = true
-  //   if(size[0] > 1024) bool = false
-  //   if(isMobileSized != bool) setMobileSizeBool(bool)
-  //   return bool
-  // }
-
-  // let burn = IsMobileSized();
-
+  if(isMobileSized && detailStatus == false) setDetailStatus(true);
 
   let detailOrder = prevOrder + 1
   if(isMobileSized){
@@ -112,7 +100,7 @@ const Home: NextPage<Props> = (props) => {
 
 
   return (
-    <div className="flex min-h-screen flex-col relative items-center justify-center scroll-smooth -mx-10 bg-slate-100">
+    <div className=" min-h-screen flex-col relative items-center justify-center scroll-smooth -mx-10 bg-slate-100">
       <Head>
         <title>Arif Rahman</title>
         <link rel="icon" href="/favicon.ico" />
@@ -123,7 +111,7 @@ const Home: NextPage<Props> = (props) => {
           <Header />
           <TopContent />
 
-          <Projects header={"My Projects"}>
+          <Projects header={"Projects"}>
             {props.projects.map(function(project, i){
               return <Project
                       project={project}
@@ -164,8 +152,6 @@ const Home: NextPage<Props> = (props) => {
           </div>
 
           <Footer />
-
-          <div className='h-[1080px]'></div>
         </div>
       </main>
 

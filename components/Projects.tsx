@@ -11,7 +11,9 @@ function Projects({header, children}:Params){
 
 
     return(
-        <div className="w-full relative shadow-up">
+        <div className="w-full relative pb-8">
+            <div className="absolute h-full -left-[10%] w-[120%] -z-10 bg-slate-200 shadow-up">
+            </div>
             <div className="absolute w-1/2 h-10 -left-1/2 z-20  "></div>
             <p className="font-bold text-4xl m-4">{header}</p>
             <div className="flex flex-1 flex-wrap ">

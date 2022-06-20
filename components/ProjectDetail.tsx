@@ -15,7 +15,6 @@ function ProjectDetail(info:Params){
     if(typeof videoID == "undefined") haveVideo = false
 
     const ChangeMedia = (index:number) => (e: any) => {
-        console.log(index)
         if(haveVideo)index++
         setMediaIndex(index)
     }

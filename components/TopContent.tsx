@@ -1,14 +1,17 @@
 function TopContent(){
     return(
-        <div id="top" className="w-full h-[600px]">
-            <div className="absolute left-0 top-0 w-[100%] h-[600px] z-[-1] bg-fixed bg-cover bg-center bg-[url('/cloud-bg.png')]">
-                {/* <img className="" src="/img/cloud-bg.png"></img> */}
+        <div id="top" className="flex-col w-[120%] h-[80vh] px-[10%] ">
+            <div className="absolute left-10 top-0 w-[110%] h-full -z-[10]">
+                <img className="fixed h-full w-full object-cover" src="/img/mesh.png"></img>
             </div>
-            <div className="flex items-end h-full">
-                <div className="relative bottom-0 w-3/5">
-                    <h1 className="font-semibold text-5xl md:text-9xl">Hi!</h1>
-                    <h2 className="font-semibold text-2xl md:text-5xl">I'm Arif</h2>
-                    <p className="py-2 md:py-6 md:text-xl">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <div className="flex items-end h-2/3 sm:h-3/5">
+                <div className="relative bottom-0 w-full items-center">
+                    <h1 className="font-semibold text-7xl md:text-9xl md:text-center">Hi!</h1>
+                    <h2 className="md:pt-2 font-semibold text-3xl md:text-5xl md:text-center">My name is Arif</h2>
+                    <div className="flex w-full md:justify-center">
+                        <p className="py-2 md:py-6 md:text-2xl md:text-center w-3/5">I create games, develop front-end, and animate... animations</p>
+                    </div>
+                    
                 </div>
             </div>
         </div>
