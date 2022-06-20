@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 
-import {CalculateOrder, CalculateBasis} from "./functions/Calculations"
+import {CalculateOrder, CalculateColor} from "./functions/Calculations"
 import parseNotionObject from "../pages/api/parseNotionObject"
 import useMediaQuery from '../components/functions/useMediaQuery'
 
@@ -40,7 +40,8 @@ function Project(info:SimpleParams){
     if(!isSmallScreen) basisPer = `${(100/basis).toString()}%`
     else basisPer = "100%"
 
-    console.log(basisPer);
+    let color = CalculateColor(type)
+    
 
     return(
         <div style={{order: `${order}`, flexBasis:`${basisPer}`}} 
@@ -51,10 +52,11 @@ function Project(info:SimpleParams){
                             <div className="flex relative rounded-lg w-full h-full shadow-lg shadow-gray-400 transition-all ease-out group-hover:h-2/5">
                                 <div className="absolute h-full w-full rounded-lg z-10 shadow-inner-project pointer-events-none"></div>
                                 {/* <img src={image_url} className="absolute object-cover h-full w-full group-hover:scale-75"/> */}
-                                <div className="absolute -left-4 top-4 p-2 rounded h-fit w-fit 
-                                transition-all ease-out shadow-sm z-10
-                                group-hover:w-0 group-hover:px-0 bg-white">
-                                    <div className="truncate">{type}</div>
+                                <div style={{backgroundColor: `${color}`}} 
+                                    className="absolute -left-4 top-4 p-2 rounded h-fit w-fit 
+                                    transition-all ease-out shadow-sm z-10
+                                    group-hover:w-0 group-hover:px-0 bg-white">
+                                    <div className="truncate font-sans font-medium">{type}</div>
                                 </div>
                                 <div className="flex relative bg-sky-300 w-full rounded-lg justify-center overflow-hidden">
                                     <img src={image_url} className="absolute object-cover h-full w-full group-hover:scale-150 transition-all"/>

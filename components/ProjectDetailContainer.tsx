@@ -69,9 +69,26 @@ function ProjectDetailContainer(info:Params){
                     // padding:info.status? '1rem' : '0px'
             }}
             className='relative rounded-lg w-full h-[600px] sm:h-[800px] md:h-[1000px] lg:h-auto px-4 pb-8 lg:p-0 lg:mx-4'>
-            {/* <div className='text-xl font-semibold mb-2'>Project Details</div> */}
+            {info.isMobileSize && (
+                <div className='flex h-12 sm:h-16 mb-1 justify-between'>
+                    <div className='text-2xl sm:text-3xl font-semibold'>Project Details</div>
+                    <div className='flex '>
+                        <button style={{cursor:info.status? 'pointer' : 'default' , pointerEvents:info.status? 'auto' : 'none'}} 
+                            className='flex rounded h-10 w-10 sm:h-12 sm:w-16 p-2 mx-1 bg-slate-400 justify-center hover:bg-slate-300' onClick={ChangeDetailPrev}>
+                            <img src='/img/arrow-left.svg' className='drop-shadow h-6 sm:h-8'/>
+                        </button>
+                        <button style={{cursor:info.status? 'pointer' : 'default' , pointerEvents:info.status? 'auto' : 'none'}} 
+                            className='flex rounded h-10 w-10 sm:h-12 sm:w-16 p-2 mx-1 bg-slate-400 justify-center hover:bg-slate-300' onClick={ChangeDetailNext}>
+                            <img src='/img/arrow-right.svg' className='drop-shadow h-6 sm:h-8'/>
+                        </button>
+                    </div>
+                    
+                    
+                </div>
+            )}
             <div className='flex items-center absolute inset-y-0 -left-14'>
-                <div style={{cursor:info.status? 'pointer' : 'default' , pointerEvents:info.status? 'auto' : 'none'}} className='h-10 w-10' onClick={ChangeDetailPrev}>
+                <div style={{cursor:info.status? 'pointer' : 'default' , pointerEvents:info.status? 'auto' : 'none'}} 
+                    className='hidden lg:block h-10 w-10' onClick={ChangeDetailPrev}>
                     <img src='/img/arrow-left.svg' className='drop-shadow'/>
                 </div>
             </div>
@@ -98,7 +115,8 @@ function ProjectDetailContainer(info:Params){
 
             </div>
             <div className='flex items-center absolute inset-y-0 -right-14'>
-                <button style={{cursor:info.status? 'pointer' : 'default' , pointerEvents:info.status? 'auto' : 'none'}} className='h-10 w-10' onClick={ChangeDetailNext}>
+                <button style={{cursor:info.status? 'pointer' : 'default' , pointerEvents:info.status? 'auto' : 'none'}} 
+                    className='hidden lg:block h-10 w-10' onClick={ChangeDetailNext}>
                     <img src='/img/arrow-right.svg' className='drop-shadow'/>
                 </button>
             </div>

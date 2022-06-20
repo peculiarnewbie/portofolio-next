@@ -100,14 +100,14 @@ function ProjectDetail(info:Params){
                             
                     </div>
                     <div className='relative w-full lg:w-1/2 p-4 h-auto grow '>
-                        <div className="text-4xl font-semibold text-black">{title}</div>
+                        <div className="text-2xl md:text-4xl font-semibold text-black">{title}</div>
                         <div className=" h-fit w-fit 
                         transition-all ease-out shadow-sm bg-white">
                             <div className="truncate">{type}</div>
                         </div>
                         <a href={link} target="_blank">
-                            <div className='flex items-center p-4 bg-indigo-500 w-32 h-16 rounded-lg shadow-lg absolute bottom-10 right-10'>
-                                <div className='font-bold text-2xl text-white'>Open {'->'}</div>
+                            <div className='flex items-center p-2 md:p-4 bg-indigo-500 w-24 h-12 md:w-32 md:h-16 rounded-lg shadow-lg absolute bottom-10 right-10 hover:scale-105 transition-transform'>
+                                <div className='font-bold text-lg md:text-2xl text-center text-white'>{'Open ->'}</div>
                             </div>
                             
                         </a>
