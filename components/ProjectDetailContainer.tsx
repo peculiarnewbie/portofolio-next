@@ -71,7 +71,7 @@ function ProjectDetailContainer(info:Params){
             className='relative rounded-lg w-full h-[600px] sm:h-[800px] md:h-[1000px] lg:h-auto px-4 pb-8 lg:p-0 lg:mx-4'>
             {info.isMobileSize && (
                 <div className='flex h-12 sm:h-16 mb-1 justify-between'>
-                    <div className='text-2xl sm:text-3xl font-semibold'>Project Details</div>
+                    <div className='text-2xl sm:text-3xl font-semibold dark:text-slate-200'>Project Details</div>
                     <div className='flex '>
                         <button style={{cursor:info.status? 'pointer' : 'default' , pointerEvents:info.status? 'auto' : 'none'}} 
                             className='flex rounded h-10 w-10 sm:h-12 sm:w-16 p-2 mx-1 bg-slate-400 justify-center hover:bg-slate-300' onClick={ChangeDetailPrev}>
