@@ -11,9 +11,10 @@ const parseNotionObject = (object) => {
     let summary = object.properties.Summary.rich_text[0]?.plain_text
     let videoID = object.properties.VideoID.rich_text[0]?.plain_text
     let videoThumb = object?.properties.Thumbnail.files[0]?.external?.url;
-    let basis = object?.properties.Basis?.number
+    let basis = object?.properties.Basis?.number;
+    let roles = object?.properties.Role?.multi_select
 
-    return{title, description, link, image_url, type, position, summary, videoID, videoThumb, images, basis};
+    return{title, description, link, image_url, type, position, summary, videoID, videoThumb, images, basis, roles};
 }
 
 export default parseNotionObject

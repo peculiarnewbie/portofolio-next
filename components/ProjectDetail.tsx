@@ -9,7 +9,7 @@ interface Params{
 function ProjectDetail(info:Params){
     const [mediaIndex, setMediaIndex] = useState(0);
 
-    const {title, description, link, image_url, type, videoID, videoThumb, images} = parseNotionObject(info.project);
+    const {title, description, link, image_url, type, videoID, videoThumb, images, roles} = parseNotionObject(info.project);
 
     let haveVideo = true;
     if(typeof videoID == "undefined") haveVideo = false

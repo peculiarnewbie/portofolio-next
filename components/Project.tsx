@@ -46,7 +46,7 @@ function Project(info:SimpleParams){
             <div className='w-full h-full p-4'>
                     <a onClick={handleClick}>
                         <div className="h-full group cursor-pointer ">
-                            <div className="flex relative rounded-lg w-full h-full shadow-lg shadow-gray-400 transition-all ease-out group-hover:h-2/5">
+                            <div className="flex relative rounded-lg w-full h-full shadow-lg shadow-gray-400 dark:shadow-black transition-all ease-out group-hover:h-2/5">
                                 <div className="absolute h-full w-full rounded-lg z-10 shadow-inner-project pointer-events-none"></div>
                                 {/* <img src={image_url} className="absolute object-cover h-full w-full group-hover:scale-75"/> */}
                                 <div style={{backgroundColor: `${color}`}} 
@@ -63,7 +63,9 @@ function Project(info:SimpleParams){
                                 </div>
                                 
                             </div>
-                            <div className="h-3/5 w-4/5 absolute bottom-4 left-[10%] rounded-lg bg-white -z-10 shadow-inner-lg px-4 pt-8 text-center overflow-auto text-xs md:text-base">
+                            <div className="h-3/5 w-4/5 absolute bottom-4 left-[10%] rounded-lg bg-white 
+                                        dark:bg-zinc-800 -z-10 shadow-inner-lg px-4 pt-8 text-center overflow-auto 
+                                        text-xs md:text-base dark:text-slate-300">
                                 {summary}
                             </div>
                         </div>

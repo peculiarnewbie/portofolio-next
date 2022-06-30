@@ -89,7 +89,7 @@ function ProjectDetailContainer(info:Params){
             <div className='flex items-center absolute inset-y-0 -left-14'>
                 <div style={{cursor:info.status? 'pointer' : 'default' , pointerEvents:info.status? 'auto' : 'none'}} 
                     className='hidden lg:block h-10 w-10' onClick={ChangeDetailPrev}>
-                    <img src='/img/arrow-left.svg' className='drop-shadow'/>
+                    <img src='/img/arrow-left.svg' className='drop-shadow dark:invert'/>
                 </div>
             </div>
 
@@ -117,7 +117,7 @@ function ProjectDetailContainer(info:Params){
             <div className='flex items-center absolute inset-y-0 -right-14'>
                 <button style={{cursor:info.status? 'pointer' : 'default' , pointerEvents:info.status? 'auto' : 'none'}} 
                     className='hidden lg:block h-10 w-10' onClick={ChangeDetailNext}>
-                    <img src='/img/arrow-right.svg' className='drop-shadow'/>
+                    <img src='/img/arrow-right.svg' className='drop-shadow dark:invert'/>
                 </button>
             </div>
         </div>
