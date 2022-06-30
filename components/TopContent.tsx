@@ -18,28 +18,44 @@ function TopContent(){
                     
                 </div>
             </div>
-            <div className="flex w-full h-8 justify-center">
-                <div className="flex h-full w-fit justify-center gap-12 dark:invert transition-all">
-                    <div className="flex-col h-full">
-                        <img className="h-full" src="/logos/mail.svg"/>
-                        <p className="text-center font-medium">github</p>
-                    </div>
-                    <div className="flex-col h-full items-center">
-                        <img className="h-full" src="/logos/github.svg"/>
-                        <p className="text-center font-medium">github</p>
-                    </div>
-                    <div className="flex-col h-full">
-                        <img className="h-full" src="/logos/itchio.svg"/>
-                        <p className="text-center font-medium">itch.io</p>
-                    </div>
-                    <div className="flex-col h-full align-center">
-                        <img className="h-full grayscale items-center brightness-0" src="/logos/artstation.svg"/>
-                        <p className="text-center font-medium">artstation</p>
-                    </div>
+            <div className="flex w-full h-4 md:h-8 mt-6 justify-start md:justify-center">
+                <div className="flex h-full w-fit justify-center gap-2 md:gap-6 dark:invert transition-all">
+                    <a href = "mailto: arif.rahman.bolt@gmail.com">
+                        <div className="w-12 md:w-20 h-full group">
+                            <div className="flex justify-center group-hover:h-full h-[150%] transition-all">
+                                <img className="h-full" src="/logos/mail.svg"/>
+                            </div>
+                            <p className="text-center font-medium opacity-0 group-hover:opacity-100 transition-all">e-mail</p>
+                        </div>
+                    </a>
+                    <a href="https://github.com/peculiarnewbie" target="_blank">
+                        <div className="w-12 md:w-20 h-full group">
+                            <div className="flex justify-center group-hover:h-full h-[150%] transition-all">
+                                <img className="h-full" src="/logos/github.svg"/>
+                            </div>
+                            <p className="text-center font-medium opacity-0 group-hover:opacity-100 transition-all">github</p>
+                        </div>
+                    </a>
+                    <a href="https://peculiarnewbie.itch.io/" target="_blank">
+                        <div className="w-12 md:w-20 h-full group">
+                            <div className="flex justify-center group-hover:h-full h-[150%] transition-all">
+                                <img className="h-full" src="/logos/itchio.svg"/>
+                            </div>
+                            <p className="text-center font-medium opacity-0 group-hover:opacity-100 transition-all">itch.io</p>
+                        </div>
+                    </a>
+                    <a href="https://peculiarnewbie.artstation.com/" target="_blank">
+                        <div className="w-12 md:w-20 h-full group">
+                            <div className="flex justify-center group-hover:h-full h-[150%] transition-all">
+                                <img className="h-full grayscale brightness-0" src="/logos/artstation.svg"/>
+                            </div>
+                            <p className="text-center font-medium opacity-0 group-hover:opacity-100 transition-all">artstation</p>
+                        </div>
+                    </a>
                     
                 </div>
             </div>
-            <div className="flex absolute left-10 top-[86vh] w-[120%] h-[1080px] -z-[10]">
+            <div className="flex absolute left-10 top-[80vh] w-[120%] h-[1080px] -z-[10]">
                 <div className="flex relative w-full h-full grow">
                     <img className="absolute -top-[700px] lg:-top-[600px] h-[1280px] object-cover dark:grayscale grow dark:invert transition-all" src="/img/Wave.svg"></img>
                 </div>

@@ -20,7 +20,7 @@ function Header(){
             </div>
             <div className="flex h-full w-1/2 justify-end mr-2">
                 <div onClick={ToggleDark}
-                className="flex relative h-full aspect-[2] p-2 rounded-full dark:bg-neutral-800 bg-orange-300 shadow-inner transition-all cursor-pointer">
+                className="flex relative h-full aspect-[2] p-2 rounded-full dark:bg-neutral-800 bg-orange-400 shadow-inner transition-all cursor-pointer">
                     <div className="absolute h-full w-1/2 pb-3 -mt-0.5 z-20 transition-transform dark:translate-x-[90%]">
                         <div className="rounded-full h-full aspect-square bg-white"></div>
                     </div>
