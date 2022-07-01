@@ -33,6 +33,15 @@ function ProjectDetail(info:Params){
         imageLinks.push(images[i].external?.url)
     }
 
+    let roleText =''
+
+    roles.forEach(listRoles);
+
+    function listRoles(item:any, index:number){
+        if(index == 0) roleText += item.name
+        else roleText += ', ' + item.name
+    }
+
     return(
         <div className="w-full shrink-0 lg:w-full">
             {/* <p className='text-3xl font-semibold mb-4'>Project Details</p> */}
@@ -62,14 +71,14 @@ function ProjectDetail(info:Params){
                                 
                             {/* <img src={image_url} className="absolute object-cover h-full w-full "/> */}
                         </div>
-                        <div className=' h-2 w-full'></div>
+                        <div className=' h-1 w-full'></div>
                         <div className='relative h-16 sm:h-24 lg:h-1/5 w-full'>
                             <div className='flex absolute -top-5 h-[125%] w-full scroll'>
                                 <div className='flex h-[80%] absolute top-5 bg-slate-500 w-full'>
                                     {haveVideo && (
                                         <div onClick={ChangeMedia(-1)} className='relative shrink-0 h-full aspect-video brightness-75'>
                                             
-                                            <img src='/img/Youtube.svg' className='absolute drop-shadow h-1/2 top-1/4 left-1/4'/>
+                                            <img src='/img/Youtube.svg' className='absolute drop-shadow h-1/2 top-1/4 left-[30%]'/>
                                             
                                             <img className='object-cover h-full w-full' src={videoThumb}></img>
                                         </div>
@@ -80,7 +89,7 @@ function ProjectDetail(info:Params){
                                                 </div>
                                     })}
                                     <div style={{transform: `translateX(${mediaIndex}00%)`}}
-                                            className='absolute shrink-0 h-full top-0 aspect-video border-4 border-slate-200 backdrop-brightness-150'>
+                                            className='absolute shrink-0 h-full top-0 aspect-video border-2 border-slate-200 backdrop-brightness-150 '>
                                         <img className='absolute  left-[40%] -top-[21%] h-1/5 z-100' src='/img/Uptick.svg'></img>
                                     </div>
                                 </div>
@@ -101,11 +110,18 @@ function ProjectDetail(info:Params){
                     <div className='relative w-full lg:w-1/2 p-4 h-auto grow '>
                         <div className="text-2xl md:text-3xl font-semibold text-black dark:text-gray-100">{title}</div>
                         <div className=" h-fit w-fit text-sm text-gray-700 dark:text-gray-300">
-                            <div className="truncate pt-1">{type}</div>
+                            <div className="truncate pt-1">Type: {type}</div>
                         </div>
+                        <div className="text-sm text-gray-700 dark:text-gray-100 pt-1">Roles: {roleText}</div>
+
+                        <div className="w-full h-1/2 mt-4 text-sm text-gray-700 dark:text-gray-300 ">
+                            <div className="pt-1">{description}</div>
+                        </div>
+
+                        {/* <div className="text-2xl md:text-3xl font-semibold text-black dark:text-gray-100">{roles[0]}</div> */}
                         <a href={link} target="_blank">
-                            <div className='flex items-center p-2 md:p-4 bg-slate-400 dark:bg-gray-500 w-24 h-12 md:w-28 md:h-14 rounded-lg shadow-lg absolute bottom-10 right-10 hover:scale-105 transition-transform'>
-                                <div className='font-bold text-lg md:text-xl text-center text-white'>{'Open ->'}</div>
+                            <div className='flex items-center p-2 md:p-4 bg-slate-400 dark:bg-gray-500 w-24 h-12 md:w-28 md:h-14 rounded-lg shadow-lg absolute bottom-7 right-8 md:right-10 hover:scale-105 transition-transform'>
+                                <div className='font-bold text-lg md:text-xl text-center text-white'>{'More →'}</div>
                             </div>
                             
                         </a>
