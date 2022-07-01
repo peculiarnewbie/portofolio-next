@@ -139,7 +139,7 @@ const Home: NextPage<Props> = (props) => {
 
           
 
-          <div className='flex flex-wrap h-[6px] w-full bg-slate-300 gap-1'>
+          {/* <div className='flex flex-wrap h-[6px] w-full bg-slate-300 gap-1'>
             <div className='basis-[1/2] h-1/2 order-1 bg-red-200'></div>
             <div className='basis-1/2 h-1/2 order-1 bg-red-200'></div>
             <div className='basis-1/3 h-1/2 order-3 bg-green-200'></div>
@@ -149,7 +149,7 @@ const Home: NextPage<Props> = (props) => {
             <div className='basis-1/3 h-1/2 order-4 bg-orange-200'></div>
             <div className='basis-1/3 h-1/2 order-5 bg-orange-200'></div>
             <div className='basis-1/4 h-1/2 order-5 bg-orange-200'></div>
-          </div>
+          </div> */}
 
           <Footer />
         </div>

@@ -1,9 +1,9 @@
 import { useState, useCallback, useEffect } from 'react';
 
-const useMediaQuery = (width) => {
+const useMediaQuery = (width:any) => {
   const [targetReached, setTargetReached] = useState(false);
 
-  const updateTarget = useCallback((e) => {
+  const updateTarget = useCallback((e:any) => {
     if (e.matches) {
       setTargetReached(true);
     } else {
@@ -26,4 +26,19 @@ const useMediaQuery = (width) => {
   return targetReached;
 };
 
+const calculateScroll = (): number => {
+  const [fromTop, setFromTop] = useState(0.0);
+
+  useEffect(() => {
+    window.addEventListener("scroll", event => {
+      setFromTop(window.scrollY);
+    })
+  }, [])
+  
+  return fromTop;
+
+}
+
 export default useMediaQuery;
+
+export {calculateScroll, useMediaQuery}

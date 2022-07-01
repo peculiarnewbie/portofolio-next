@@ -52,7 +52,7 @@ function Project(info:SimpleParams){
                                 <div style={{backgroundColor: `${color}`}} 
                                     className="absolute -left-4 top-4 p-2 rounded h-fit w-fit 
                                     transition-all ease-out shadow-sm z-10
-                                    group-hover:w-0 group-hover:px-0 bg-white">
+                                    group-hover:w-0 group-hover:px-0 bg-slate-100">
                                     <div className="truncate font-sans font-medium">{type}</div>
                                 </div>
                                 <div className="flex relative bg-sky-300 w-full rounded-lg justify-center overflow-hidden">
@@ -63,7 +63,7 @@ function Project(info:SimpleParams){
                                 </div>
                                 
                             </div>
-                            <div className="h-3/5 w-4/5 absolute bottom-4 left-[10%] rounded-lg bg-white 
+                            <div className="h-3/5 w-4/5 absolute bottom-4 left-[10%] rounded-lg bg-slate-100 
                                         dark:bg-zinc-800 -z-10 shadow-inner-lg px-4 pt-8 text-center overflow-auto 
                                         text-xs md:text-base dark:text-slate-300">
                                 {summary}

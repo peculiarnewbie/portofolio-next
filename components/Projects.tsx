@@ -12,7 +12,7 @@ function Projects({header, children}:Params){
 
     return(
         <div className="w-full relative pb-8">
-            <div className="absolute h-full -left-[100%] top-[550px] lg:top-[650px] w-[300%] -z-[11] bg-slate-200 dark:bg-neutral-900 shadow-up transition-colors"></div>
+            <div className="absolute h-[85%] -left-[100%] top-[550px] lg:top-[650px] w-[300%] -z-[11] bg-slate-200 dark:bg-neutral-900 shadow-up transition-colors"></div>
             
             <div className="absolute w-1/2 h-10 -left-1/2 z-20  "></div>
             <p className="font-bold text-4xl m-4 dark:text-slate-200">{header}</p>

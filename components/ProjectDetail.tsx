@@ -39,7 +39,7 @@ function ProjectDetail(info:Params){
             
             
             <div className="w-full h-full group">
-                <div className="flex flex-col lg:flex-row relative w-full h-full aspect-[14/5] overflow-hidden bg-orange-300">
+                <div className="flex flex-col lg:flex-row relative w-full h-full aspect-[14/5] overflow-hidden bg-slate-100 dark:bg-zinc-800 transition-all">
                     
                     <div className='flex flex-col justify-between relative w-full h-fit lg:h-full lg:w-1/2 overflow-hidden'>
                         
@@ -99,22 +99,19 @@ function ProjectDetail(info:Params){
                             
                     </div>
                     <div className='relative w-full lg:w-1/2 p-4 h-auto grow '>
-                        <div className="text-2xl md:text-4xl font-semibold text-black">{title}</div>
-                        <div className=" h-fit w-fit 
-                        transition-all ease-out shadow-sm bg-white">
-                            <div className="truncate">{type}</div>
+                        <div className="text-2xl md:text-3xl font-semibold text-black dark:text-gray-100">{title}</div>
+                        <div className=" h-fit w-fit text-sm text-gray-700 dark:text-gray-300">
+                            <div className="truncate pt-1">{type}</div>
                         </div>
                         <a href={link} target="_blank">
-                            <div className='flex items-center p-2 md:p-4 bg-indigo-500 w-24 h-12 md:w-32 md:h-16 rounded-lg shadow-lg absolute bottom-10 right-10 hover:scale-105 transition-transform'>
-                                <div className='font-bold text-lg md:text-2xl text-center text-white'>{'Open ->'}</div>
+                            <div className='flex items-center p-2 md:p-4 bg-slate-400 dark:bg-gray-500 w-24 h-12 md:w-28 md:h-14 rounded-lg shadow-lg absolute bottom-10 right-10 hover:scale-105 transition-transform'>
+                                <div className='font-bold text-lg md:text-xl text-center text-white'>{'Open ->'}</div>
                             </div>
                             
                         </a>
                     </div>
                 </div>
             </div>
-            
-
         </div>
     )
 }

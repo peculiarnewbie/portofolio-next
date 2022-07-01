@@ -68,7 +68,7 @@ function ProjectDetailContainer(info:Params){
                     transitionDuration: `500ms`
                     // padding:info.status? '1rem' : '0px'
             }}
-            className='relative rounded-lg w-full h-[600px] sm:h-[800px] md:h-[1000px] lg:h-auto px-4 pb-8 lg:p-0 lg:mx-4'>
+            className='relative rounded-lg w-full h-[700px] sm:h-[800px] md:h-[1000px] lg:h-auto px-4 pb-8 lg:p-0 lg:mx-4'>
             {info.isMobileSize && (
                 <div className='flex h-12 sm:h-16 mb-1 justify-between'>
                     <div className='text-2xl sm:text-3xl font-semibold dark:text-slate-200'>Project Details</div>
@@ -110,7 +110,7 @@ function ProjectDetailContainer(info:Params){
                 </div>
                 <a onClick={HandleClose}>
                     <div style={{cursor:info.status? 'pointer' : 'default' , pointerEvents:info.status? 'auto' : 'none',}} 
-                        className="hidden lg:block text-2xl font-semibold absolute right-2 top-4 h-10 w-10 cursor-pointer">x</div>
+                        className="hidden lg:block text-2xl font-semibold absolute right-2 top-4 h-10 w-10 cursor-pointer dark:text-white">x</div>
                 </a>
 
             </div>
